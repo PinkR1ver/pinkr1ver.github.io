@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hello World
-author: {{site.author.fullname}}
+author: Yichong Wang
 date: '2022-03-03'
 category: NSFW
 tags: 
