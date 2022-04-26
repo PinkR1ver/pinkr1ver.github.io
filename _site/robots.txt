@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://pinkr1ver.com/sitemap.xml

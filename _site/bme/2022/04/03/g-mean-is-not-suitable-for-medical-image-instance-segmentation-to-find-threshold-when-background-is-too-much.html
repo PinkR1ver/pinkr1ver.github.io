@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title> G-mean is not suitable for medical image instance segmentation to find threshold when background is too much — Is G-mean can handle medical image instance, especially for small cancer in big brain?  | PinkR1ver Studio</title>
+<meta name="description" content="Is G-mean can handle medical image instance, especially for small cancer in big brain?">
+<meta name="keywords" content="Deep learning, Image Segmentation, Threshold, Python">
+<link rel="canonical" href="/bme/2022/04/03/g-mean-is-not-suitable-for-medical-image-instance-segmentation-to-find-threshold-when-background-is-too-much.html">
+<link rel="icon" type="image/jpeg" href="/assets/img/pudhina.jpg"/>
+<link rel="stylesheet" href="/assets/vendor/normalize-css/normalize.css">
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<link rel="stylesheet" href="/assets/vendor/highlight/styles/agate.css">
+
+<link rel="stylesheet" href="/assets/vendor/font-awesome/css/font-awesome.css">
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+</head>
+<body>
+<div class="wrapper">
+<header class="header">
+<div class="navigation">
+<a href="/" class="logo">PinkR1ver Studio</a>
+<ul class="menu">
+<li class="menu__entry"><a href="/resume">Resume</a></li>
+<li class="menu__entry"><a href="/blog">Blog</a></li>
+<li class="menu__entry"><a href="https://pinkr1ver.notion.site/pinkr1ver/3cfdd332b9a94b20bca041f2aa2bdcd2?v=24e696e6ab754386a710bc8e83976357">Photo gallery</a></li>
+</ul>
+</div>
+<ul class="social-links">
+
+<a href="mailto:pinkr1veroops@gmail.com" class="social-links__entry" target="_blank">
+<i class="fa fa-envelope-square"></i>
+</a>
+
+
+<a href="https://github.com/https://github.com/PinkR1ver" class="social-links__entry" target="_blank">
+<i class="fa fa-github"></i>
+</a>
+
+
+
+<a href="https://twitter.com/PinkR1ver" class="social-links__entry" target="_blank">
+<i class="fa fa-twitter"></i>
+</a>
+
+</ul>
+</header>
+<h1 class="page-title">
+<div class="page-title__text">G-mean is not suitable for medical image instance segmentation to find threshold when background is too much</div>
+<div class="page-title__subtitle">Is G-mean can handle medical image instance, especially for small cancer in big brain?</div>
+</h1>
+
+<h1 id="threshold">Threshold</h1>
+<p>In my undergraduate FYP, I need to do image segmentation to the brain MRI to annotate the GBM cancer in patient brain.</p>
+
+<p><img src="/assets/img/2022-04-03-g-mean-is-not-suitable-for-medical-image-instance-segmentation-to-find-threshold-when-background-is-too-much/GBM_MRI.png" alt="GBM MRI Image" /></p>
+
+<p>I apply the famous architecture U-net to do this segmentation task. The last layer I apply is <strong>sigmoid</strong>. It outputs every pixel value in [0-1]. I was wondering which value is the best threshold for the segmentation.
+<img src="/assets/img/2022-04-03-g-mean-is-not-suitable-for-medical-image-instance-segmentation-to-find-threshold-when-background-is-too-much/Threshold.png" alt="Threshold" />
+In the beginning, I set threshold as 0.5, but the data is very imbalance that the background is much more than the cancer area. It means that 0 value pixel is much more that 1 value pixel. It will lead to 0.5 is not a suitable value to distinguish 1 and 0. You can check this link to learn the detail:</p>
+
+<p>https://towardsdatascience.com/optimal-threshold-for-imbalanced-classification-5884e870c293</p>
+
+<h1 id="roc-curve">ROC curve</h1>
+<p>ROC (Receiver operating characteristic), is a graphical plot that illustrates the diagnostic ability of a binary classifier system as its discrimination threshold is varied. It is created by plotting the true positive rate (TPR) against the false positive rate (FPR) at various threshold settings.</p>
+
+<p><img src="/assets/img/2022-04-03-g-mean-is-not-suitable-for-medical-image-instance-segmentation-to-find-threshold-when-background-is-too-much/Roccurves.png" alt="ROC Curve" /></p>
+
+<p>It has two usages here:</p>
+<ol>
+  <li>Compare different method in binary classification.</li>
+  <li>Find best threshold for binary classification</li>
+</ol>
+
+<p>For the usage 1, it is always using AUC (Area under curve) to determine which classification method is better.</p>
+
+<p>And for usage 2, which is the part I want to talk about, it always want to choose the most up left point to be our threshold. It is very easy to understand because the more left, the false positive rate will be more less,  the more up, the true positive rate will be more bigger. But how to evaluate the best left up point in ROC curve? As the article in <a href="https://towardsdatascience.com/optimal-threshold-for-imbalanced-classification-5884e870c293">link above</a> shiows that, it usually use a paramter called G-mean:</p>
+
+<p><img src="/assets/img/2022-04-03-g-mean-is-not-suitable-for-medical-image-instance-segmentation-to-find-threshold-when-background-is-too-much/Gmean.png" alt="G-mean" /></p>
+
+<p>You can see that G-mean take both sensitivity and specificity into consideration. The result will be a tradeoff for 0 and 1 classification. The point here is that G-mean take 0 and 1 as the same importance. It will be great if we classify banana and apple, or some other two thing in a same significance. It will solve the imbalance.</p>
+
+<p>But the question is that, in medical segmentation to segment cancer area. We do not think cancer area and normal area as same importance. So using  G-mean to determine threshold will result:</p>
+
+<p><strong><em>I do the ROC calculating to find the bigger G-mean point to determine threshold in epoch 10, and you can see the problem.</em></strong></p>
+
+<p><img src="/assets/img/2022-04-03-g-mean-is-not-suitable-for-medical-image-instance-segmentation-to-find-threshold-when-background-is-too-much/RealRoc.png" alt="Roc curve" /></p>
+
+<p><img src="/assets/img/2022-04-03-g-mean-is-not-suitable-for-medical-image-instance-segmentation-to-find-threshold-when-background-is-too-much/epoch2_epoch12_specificity.png" alt="Specificity" /></p>
+
+<p><img src="/assets/img/2022-04-03-g-mean-is-not-suitable-for-medical-image-instance-segmentation-to-find-threshold-when-background-is-too-much/epoch2_epoch12_sensitivity.png" alt="Sensitivity" />
+As you can see, to make G-mean bigger, we choose the threshold that will sacrifice specificity to increase sensitivity. Because in my dataset, the background is so much, so specificity will be so close to 1. Even you predict more cancer area, aka. more white part, the specificity will be influenced very little.</p>
+
+<p>As you can see, the specificity decrease from 1 to 0.94, but the sensitivity increase from 0.65 - 1.</p>
+
+<p>To be more clear, see the graph:</p>
+
+<p><img src="/assets/img/2022-04-03-g-mean-is-not-suitable-for-medical-image-instance-segmentation-to-find-threshold-when-background-is-too-much/1025.png" alt="example" />
+The left is original image, the middle is ground truth, the right is prediction.</p>
+
+<p>As you can see, the net wants to predict more white part to increase sensitivity and because it have a lot of picture with huge black part, the specificity will not be influenced more. So finally, choose the biggest G-mean point will lead to:</p>
+
+<p><img src="/assets/img/2022-04-03-g-mean-is-not-suitable-for-medical-image-instance-segmentation-to-find-threshold-when-background-is-too-much/epoch2_epoch12_f1score.png" alt="f1score" /></p>
+
+<p><img src="/assets/img/2022-04-03-g-mean-is-not-suitable-for-medical-image-instance-segmentation-to-find-threshold-when-background-is-too-much/epoch2_epoch12_IoU.png" alt="IoU" /></p>
+
+<p>The most important parameter we take attention to: f1-score and IoU will dramatically decrease.</p>
+
+<p>In conclusion, when you meet this situation:</p>
+
+<ul>
+  <li>Imbalance Data</li>
+  <li>You take more attention and account to the small part type of your dataset. (The Brain cancer segmentation in MRI is this typical example )</li>
+</ul>
+
+<p>You have better not use G-mean to determine which threshold you shold deploy.</p>
+
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		// Don't ever inject Disqus on localhost--it creates unwanted
+		// discussions from 'localhost:1313' on your Disqus account...
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'pinkr1ver';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</div>
+<script src="/assets/vendor/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

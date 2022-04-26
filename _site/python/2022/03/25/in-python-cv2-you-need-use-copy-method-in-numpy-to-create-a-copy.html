@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title> In python cv2, you need use .copy() method in Numpy to create a copy — shallow copy and deep copy?  | PinkR1ver Studio</title>
+<meta name="description" content="In python cv2, you need use .copy() method in Numpy to create a copy">
+<meta name="keywords" content="Python, opencv-python">
+<link rel="canonical" href="/python/2022/03/25/in-python-cv2-you-need-use-copy-method-in-numpy-to-create-a-copy.html">
+<link rel="icon" type="image/jpeg" href="/assets/img/pudhina.jpg"/>
+<link rel="stylesheet" href="/assets/vendor/normalize-css/normalize.css">
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<link rel="stylesheet" href="/assets/vendor/highlight/styles/agate.css">
+
+<link rel="stylesheet" href="/assets/vendor/font-awesome/css/font-awesome.css">
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+</head>
+<body>
+<div class="wrapper">
+<header class="header">
+<div class="navigation">
+<a href="/" class="logo">PinkR1ver Studio</a>
+<ul class="menu">
+<li class="menu__entry"><a href="/resume">Resume</a></li>
+<li class="menu__entry"><a href="/blog">Blog</a></li>
+<li class="menu__entry"><a href="https://pinkr1ver.notion.site/pinkr1ver/3cfdd332b9a94b20bca041f2aa2bdcd2?v=24e696e6ab754386a710bc8e83976357">Photo gallery</a></li>
+</ul>
+</div>
+<ul class="social-links">
+
+<a href="mailto:pinkr1veroops@gmail.com" class="social-links__entry" target="_blank">
+<i class="fa fa-envelope-square"></i>
+</a>
+
+
+<a href="https://github.com/https://github.com/PinkR1ver" class="social-links__entry" target="_blank">
+<i class="fa fa-github"></i>
+</a>
+
+
+
+<a href="https://twitter.com/PinkR1ver" class="social-links__entry" target="_blank">
+<i class="fa fa-twitter"></i>
+</a>
+
+</ul>
+</header>
+<h1 class="page-title">
+<div class="page-title__text">In python cv2, you need use .copy() method in Numpy to create a copy</div>
+<div class="page-title__subtitle">shallow copy and deep copy?</div>
+</h1>
+
+<p>Recently, I need to upload my graduation photo in China. There are lots of requirements, so I need to do some processing to my picture. One of them is to do offset, moving the picture pixel value down.</p>
+
+<p>Because I don’t very familiar with cv2 function, so I decide to do brute force way, using <code class="language-plaintext highlighter-rouge">for loop</code></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">new_img</span> <span class="o">=</span> <span class="n">img</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">img</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">img</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">new_img</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">20</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">img</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">new_img</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>But with this code, the result will be wrong like that:</p>
+<h2 id="original-image">Original Image:</h2>
+<p><img src="/assets/img/2022-03-25-in-python-cv2-you-need-use-copy-method-in-numpy-to-create-a-copy/images.png" alt="" /></p>
+
+<h2 id="wrong-results">Wrong Results:</h2>
+<p><img src="/assets/img/2022-03-25-in-python-cv2-you-need-use-copy-method-in-numpy-to-create-a-copy/NewImage.jpg" alt="" /></p>
+
+<p>If you use another method to do this:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">new_img</span> <span class="o">=</span> <span class="n">img</span><span class="p">[:</span><span class="mi">235</span><span class="p">,:]</span>
+<span class="n">bak</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">20</span><span class="p">,:]</span>
+
+
+<span class="n">new_img</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">bak</span><span class="p">,</span> <span class="n">new_img</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+</code></pre></div></div>
+<h2 id="expected-results">Expected Results:</h2>
+<p><img src="/assets/img/2022-03-25-in-python-cv2-you-need-use-copy-method-in-numpy-to-create-a-copy/NewImage2.jpg" alt="" /></p>
+
+<p>The reason why is that when you code <code class="language-plaintext highlighter-rouge">new_img = img</code> in python. The numpy will not create a real variable with new address. See this code:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+    <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="o">&gt;</span> <span class="mi">2410142026512</span>
+<span class="o">&gt;</span> <span class="mi">2410142026512</span>
+
+</code></pre></div></div>
+<p>Guess what, the result is that address of x and y is the same. I guess that when numpy has some calculation will alert numpy to create a real variable. If there is just ‘=’, the numpy will not create real variable. So you need to use .copy() function to create copy of one variable, rather than ‘=’ .</p>
+
+<p>I also ask this question in <a href="https://stackoverflow.com/questions/71606098/python-opencv2-for-loop-to-change-image-pixel-value?noredirect=1#comment126563050_71606098">stackoverflow</a>. This answer is so great. It introduce the concept about <strong>shallow copy and deep copy</strong>.</p>
+
+<p><img src="/assets/img/2022-03-25-in-python-cv2-you-need-use-copy-method-in-numpy-to-create-a-copy/ShallowCopy&amp;DeepCopy.png" alt="" /></p>
+
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		// Don't ever inject Disqus on localhost--it creates unwanted
+		// discussions from 'localhost:1313' on your Disqus account...
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'pinkr1ver';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</div>
+<script src="/assets/vendor/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
