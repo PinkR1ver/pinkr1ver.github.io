@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://pinkr1ver.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://pinkr1ver.com/" rel="alternate" type="text/html" /><updated>2022-04-27T02:28:18+08:00</updated><id>https://pinkr1ver.com/feed.xml</id><title type="html">PinkR1ver Studio</title><subtitle>Jude Wang&apos;s Blog
+</subtitle><author><name>{&quot;fullname&quot;=&gt;&quot;Jude Wang&quot;, &quot;github&quot;=&gt;&quot;https://github.com/PinkR1ver&quot;, &quot;email&quot;=&gt;&quot;pinkr1veroops@gmail.com&quot;, &quot;twitter&quot;=&gt;&quot;PinkR1ver&quot;}</name><email>pinkr1veroops@gmail.com</email></author><entry><title type="html">Data type is medical image normalization trap</title><link href="https://pinkr1ver.com/bme/2022/04/06/data-type-is-medical-image-normalization-trap.html" rel="alternate" type="text/html" title="Data type is medical image normalization trap" /><published>2022-04-06T00:00:00+08:00</published><updated>2022-04-06T00:00:00+08:00</updated><id>https://pinkr1ver.com/bme/2022/04/06/data-type-is-medical-image-normalization-trap</id><content type="html" xml:base="https://pinkr1ver.com/bme/2022/04/06/data-type-is-medical-image-normalization-trap.html"><![CDATA[<h1 id="background">Background</h1>
+
+<p>I want to do preprocessing to some MRI data with .nii file extension. One of the step is normalization. As usual, when our dataset is a bunch of normal images with .png file extension, its usually a 3 Channel 8-bit image with data type is uint8. So its very common to do normalization from [0-225] to [0-1] by just dividing 255 to very pixel value.</p>
+
+<p>But my dataset is all float64 aka. double type.</p>
+
+<h1 id="wrong-operation">Wrong operation</h1>
+
+<p>When I first do data preprocessing, I make two fatally error.</p>
+<ul>
+  <li>Convert .nii file every slice into uint8, typical normal image in computer.</li>
+  <li>Do normalization to every slice</li>
+</ul>
+
+<p>First fatal is because that I do a real lossy conversation from float64 to uint8.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">imageio</span><span class="p">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">savePathAX</span><span class="p">,</span> <span class="s">'{}.png'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">i</span><span class="p">)),</span> <span class="nb">slice</span><span class="p">)</span>
+</code></pre></div></div>
+<p>This step will auto convert your data to uint8, its a real lossy conversation.</p>
+
+<p>Also, you may have a question, float64 range from 2.2E-308 to 1.7E+308, how do this code deal with the largest value.</p>
+
+<p>Actually, it will make your largest value as 255. So it means that, it already do the normalization to every image from [0 - max] to [0 - 255].</p>
+
+<p>Its the second fatally error.</p>
+
+<p>For medical image, take CT as example:</p>
+
+<p><a href="https://zhuanlan.zhihu.com/p/112176670"><img src="/assets/img/2022-04-06-data-type-is-medical-image-normalization-trap/Zhihu.jpg" alt="CT Subtance HU value" /></a></p>
+
+<p>You can find the pixel value mean, so you can find the data max bound and min bound[1].  And you can do the normalization easily:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">MIN_BOUND</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1000.0</span>
+<span class="n">MAX_BOUND</span> <span class="o">=</span> <span class="mf">400.0</span>
+
+<span class="k">def</span> <span class="nf">norm_img</span><span class="p">(</span><span class="n">image</span><span class="p">):</span> 
+    <span class="n">image</span> <span class="o">=</span> <span class="p">(</span><span class="n">image</span> <span class="o">-</span> <span class="n">MIN_BOUND</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">MAX_BOUND</span> <span class="o">-</span> <span class="n">MIN_BOUND</span><span class="p">)</span>
+    <span class="n">image</span><span class="p">[</span><span class="n">image</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span>
+    <span class="n">image</span><span class="p">[</span><span class="n">image</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.</span>
+    <span class="k">return</span> <span class="n">image</span>
+</code></pre></div></div>
+<p>(This code also from [1])</p>
+
+<p>So, image that you normalize every image into [0-1], if your every image have the bone, that’s fine. Every max value 1 represent bone. But if one of your image don’t have bone, the max HU value represent soft tissue and you normalize it into [0-1]. So different image’s 1 will have different mean, normally it means bone and some image will wrongly represent it as soft issue.</p>
+
+<p>That’s why you have normalize depending on the meaning of its pixel value rather than just every image or data type max value.</p>
+
+<p>Take my MRI image dataset as example, its max value is 2.6E+4 and its type is float64. If you divide it by float_max aka. 1.7E+308, all its value will be super small and if you transfer it into float32 to input into model, all its pixel value will be 0.</p>
+
+<p>Lastly, in conclusion,</p>
+
+<ul>
+  <li>Find the pixel value mean before do normalization</li>
+  <li>Data type is not the guideline and most of time using float64 is for its precision rather than its range.</li>
+</ul>
+
+<h3 id="appdenix">Appdenix</h3>
+<p>[1] https://zhuanlan.zhihu.com/p/112176670</p>
+
+<p><del><em>For MRI Image, i don’t know there has the standard or not.</em></del></p>
+
+<h1 id="replenish-apr-8-2022">Replenish Apr 8, 2022</h1>
+<p>In MRI, you can do normalization to every brain because in MRI, different machine, different machine parameter will give you real different intensity. So the absolute value of MRI image intensity is not every important, the most important value is contrast information, aka. the intensity histogram. So you can do normalization to every brain separately.</p>
+
+<p>“The same histogram can maintain the internal tissue contrast of your original individual and reduce the gray value difference between individuals”             —Shen (A researcher from Zhejiang University)</p>]]></content><author><name>Yichong Wang</name></author><category term="BME" /><category term="Deep learning" /><category term="MRI" /><category term="BME" /><summary type="html"><![CDATA[data type is not always thbe normalization standard]]></summary></entry><entry><title type="html">Commemorate 2022 Pixel War</title><link href="https://pinkr1ver.com/art/2022/04/06/commemorate-2022-pixel-war.html" rel="alternate" type="text/html" title="Commemorate 2022 Pixel War" /><published>2022-04-06T00:00:00+08:00</published><updated>2022-04-06T00:00:00+08:00</updated><id>https://pinkr1ver.com/art/2022/04/06/commemorate-2022-pixel-war</id><content type="html" xml:base="https://pinkr1ver.com/art/2022/04/06/commemorate-2022-pixel-war.html"><![CDATA[<p><img src="/assets/img/2022-04-06-commemorate-2022-pixel-war/r_place_2022.png" alt="r/place 2022" /></p>
+
+<p>The afterglow of the Internet age</p>]]></content><author><name>Yichong Wang</name></author><category term="Art" /><category term="pixel art" /><category term="reddit" /><summary type="html"><![CDATA[r/place 2022]]></summary></entry><entry><title type="html">G-mean is not suitable for medical image instance segmentation to find threshold when background is too much</title><link href="https://pinkr1ver.com/bme/2022/04/03/g-mean-is-not-suitable-for-medical-image-instance-segmentation-to-find-threshold-when-background-is-too-much.html" rel="alternate" type="text/html" title="G-mean is not suitable for medical image instance segmentation to find threshold when background is too much" /><published>2022-04-03T00:00:00+08:00</published><updated>2022-04-03T00:00:00+08:00</updated><id>https://pinkr1ver.com/bme/2022/04/03/g-mean-is-not-suitable-for-medical-image-instance-segmentation-to-find-threshold-when-background-is-too-much</id><content type="html" xml:base="https://pinkr1ver.com/bme/2022/04/03/g-mean-is-not-suitable-for-medical-image-instance-segmentation-to-find-threshold-when-background-is-too-much.html"><![CDATA[<h1 id="threshold">Threshold</h1>
+<p>In my undergraduate FYP, I need to do image segmentation to the brain MRI to annotate the GBM cancer in patient brain.</p>
+
+<p><img src="/assets/img/2022-04-03-g-mean-is-not-suitable-for-medical-image-instance-segmentation-to-find-threshold-when-background-is-too-much/GBM_MRI.png" alt="GBM MRI Image" /></p>
+
+<p>I apply the famous architecture U-net to do this segmentation task. The last layer I apply is <strong>sigmoid</strong>. It outputs every pixel value in [0-1]. I was wondering which value is the best threshold for the segmentation.
+<img src="/assets/img/2022-04-03-g-mean-is-not-suitable-for-medical-image-instance-segmentation-to-find-threshold-when-background-is-too-much/Threshold.png" alt="Threshold" />
+In the beginning, I set threshold as 0.5, but the data is very imbalance that the background is much more than the cancer area. It means that 0 value pixel is much more that 1 value pixel. It will lead to 0.5 is not a suitable value to distinguish 1 and 0. You can check this link to learn the detail:</p>
+
+<p>https://towardsdatascience.com/optimal-threshold-for-imbalanced-classification-5884e870c293</p>
+
+<h1 id="roc-curve">ROC curve</h1>
+<p>ROC (Receiver operating characteristic), is a graphical plot that illustrates the diagnostic ability of a binary classifier system as its discrimination threshold is varied. It is created by plotting the true positive rate (TPR) against the false positive rate (FPR) at various threshold settings.</p>
+
+<p><img src="/assets/img/2022-04-03-g-mean-is-not-suitable-for-medical-image-instance-segmentation-to-find-threshold-when-background-is-too-much/Roccurves.png" alt="ROC Curve" /></p>
+
+<p>It has two usages here:</p>
+<ol>
+  <li>Compare different method in binary classification.</li>
+  <li>Find best threshold for binary classification</li>
+</ol>
+
+<p>For the usage 1, it is always using AUC (Area under curve) to determine which classification method is better.</p>
+
+<p>And for usage 2, which is the part I want to talk about, it always want to choose the most up left point to be our threshold. It is very easy to understand because the more left, the false positive rate will be more less,  the more up, the true positive rate will be more bigger. But how to evaluate the best left up point in ROC curve? As the article in <a href="https://towardsdatascience.com/optimal-threshold-for-imbalanced-classification-5884e870c293">link above</a> shiows that, it usually use a paramter called G-mean:</p>
+
+<p><img src="/assets/img/2022-04-03-g-mean-is-not-suitable-for-medical-image-instance-segmentation-to-find-threshold-when-background-is-too-much/Gmean.png" alt="G-mean" /></p>
+
+<p>You can see that G-mean take both sensitivity and specificity into consideration. The result will be a tradeoff for 0 and 1 classification. The point here is that G-mean take 0 and 1 as the same importance. It will be great if we classify banana and apple, or some other two thing in a same significance. It will solve the imbalance.</p>
+
+<p>But the question is that, in medical segmentation to segment cancer area. We do not think cancer area and normal area as same importance. So using  G-mean to determine threshold will result:</p>
+
+<p><strong><em>I do the ROC calculating to find the bigger G-mean point to determine threshold in epoch 10, and you can see the problem.</em></strong></p>
+
+<p><img src="/assets/img/2022-04-03-g-mean-is-not-suitable-for-medical-image-instance-segmentation-to-find-threshold-when-background-is-too-much/RealRoc.png" alt="Roc curve" /></p>
+
+<p><img src="/assets/img/2022-04-03-g-mean-is-not-suitable-for-medical-image-instance-segmentation-to-find-threshold-when-background-is-too-much/epoch2_epoch12_specificity.png" alt="Specificity" /></p>
+
+<p><img src="/assets/img/2022-04-03-g-mean-is-not-suitable-for-medical-image-instance-segmentation-to-find-threshold-when-background-is-too-much/epoch2_epoch12_sensitivity.png" alt="Sensitivity" />
+As you can see, to make G-mean bigger, we choose the threshold that will sacrifice specificity to increase sensitivity. Because in my dataset, the background is so much, so specificity will be so close to 1. Even you predict more cancer area, aka. more white part, the specificity will be influenced very little.</p>
+
+<p>As you can see, the specificity decrease from 1 to 0.94, but the sensitivity increase from 0.65 - 1.</p>
+
+<p>To be more clear, see the graph:</p>
+
+<p><img src="/assets/img/2022-04-03-g-mean-is-not-suitable-for-medical-image-instance-segmentation-to-find-threshold-when-background-is-too-much/1025.png" alt="example" />
+The left is original image, the middle is ground truth, the right is prediction.</p>
+
+<p>As you can see, the net wants to predict more white part to increase sensitivity and because it have a lot of picture with huge black part, the specificity will not be influenced more. So finally, choose the biggest G-mean point will lead to:</p>
+
+<p><img src="/assets/img/2022-04-03-g-mean-is-not-suitable-for-medical-image-instance-segmentation-to-find-threshold-when-background-is-too-much/epoch2_epoch12_f1score.png" alt="f1score" /></p>
+
+<p><img src="/assets/img/2022-04-03-g-mean-is-not-suitable-for-medical-image-instance-segmentation-to-find-threshold-when-background-is-too-much/epoch2_epoch12_IoU.png" alt="IoU" /></p>
+
+<p>The most important parameter we take attention to: f1-score and IoU will dramatically decrease.</p>
+
+<p>In conclusion, when you meet this situation:</p>
+
+<ul>
+  <li>Imbalance Data</li>
+  <li>You take more attention and account to the small part type of your dataset. (The Brain cancer segmentation in MRI is this typical example )</li>
+</ul>
+
+<p>You have better not use G-mean to determine which threshold you shold deploy.</p>]]></content><author><name>Yichong Wang</name></author><category term="BME" /><category term="Deep learning" /><category term="Image Segmentation" /><category term="Threshold" /><category term="Python" /><summary type="html"><![CDATA[Is G-mean can handle medical image instance, especially for small cancer in big brain?]]></summary></entry><entry><title type="html">I buy my first NFT avatar</title><link href="https://pinkr1ver.com/art/2022/03/27/i-buy-my-first-nft-avatar.html" rel="alternate" type="text/html" title="I buy my first NFT avatar" /><published>2022-03-27T00:00:00+08:00</published><updated>2022-03-27T00:00:00+08:00</updated><id>https://pinkr1ver.com/art/2022/03/27/i-buy-my-first-nft-avatar</id><content type="html" xml:base="https://pinkr1ver.com/art/2022/03/27/i-buy-my-first-nft-avatar.html"><![CDATA[<h1 id="story">Story</h1>
+<p>Because Boring.</p>
+
+<p>Because in China, cryptocurrency is totally illegal. Even I am in Singapore right now, buy ETH from some <em>Centralized Exchanges</em> is totally impossible. Another way to buy ETH is <em>Decentralized exchanges (DEXs)</em>. It needs a lot of money to do this p2p exchange and I can not afford it. Luckily, I find a way to exchange BTC to ETH considering I have some BTC in hand (from <em>Zhu Yicheng</em>), using <a href="https://changelly.com/">changelly</a>.</p>
+
+<p>Very interesting story, I find a NFT avatar have Hawaiian shirt and knitted hat which are two thing can represent me in the period of Singapore. So I think is it a real serendipity to meet it. So i decided to buy it. It is like:</p>
+
+<h2 id="nft-giraffe-6759-from-collection-pixel-giraffes">NFT: Giraffe #6759 from collection <a href="https://opensea.io/collection/pixel-giraffes">Pixel Giraffes</a></h2>
+<p><a href="https://opensea.io/assets/0x495f947276749ce646f68ac8c248420045cb7b5e/40482595849772694285173713041642282097106100196042549765489076692661152251905"><img src="/assets/img/2022-03-27-i-buy-my-first-nft-avatar/Giraffe6759.png" alt="Giraffe #6759" /></a></p>
+
+<h2 id="at-last">At last</h2>
+
+<p>Finally, in my opinion, I think NFT is a great way to create art and sell art. But the most NFT avatar is just a new stupid ‘换装小游戏’ or new ‘QQ秀’ that you can choose some elements provided by others to change your web avatar. It is not web3, just a new way to take your money out like 10 years ago.</p>]]></content><author><name>Yichong Wang</name></author><category term="Art" /><category term="NFT" /><category term="avatar" /><summary type="html"><![CDATA[My first NFT]]></summary></entry><entry><title type="html">ChinaPunk😂</title><link href="https://pinkr1ver.com/art/2022/03/26/chinapunk.html" rel="alternate" type="text/html" title="ChinaPunk😂" /><published>2022-03-26T00:00:00+08:00</published><updated>2022-03-26T00:00:00+08:00</updated><id>https://pinkr1ver.com/art/2022/03/26/chinapunk</id><content type="html" xml:base="https://pinkr1ver.com/art/2022/03/26/chinapunk.html"><![CDATA[<h1 id="china-punk">China punk</h1>
+<p><a href="https://twitter.com/damienics/status/1506354996413091847"><img src="/assets/img/2022-03-26-chinapunk/Chinapunk.jpg" alt="ChinaPunk" /></a>
+From: <a href="https://twitter.com/damienics/status/1506354996413091847"><del>Damien Ma</del></a> <a href="https://twitter.com/hancocktom">Tom Hancock</a></p>]]></content><author><name>Yichong Wang</name></author><category term="Art" /><category term="Photo" /><summary type="html"><![CDATA[China style cyberpunk in 2022. 😂]]></summary></entry><entry><title type="html">In python cv2, you need use .copy() method in Numpy to create a copy</title><link href="https://pinkr1ver.com/python/2022/03/25/in-python-cv2-you-need-use-copy-method-in-numpy-to-create-a-copy.html" rel="alternate" type="text/html" title="In python cv2, you need use .copy() method in Numpy to create a copy" /><published>2022-03-25T00:00:00+08:00</published><updated>2022-03-25T00:00:00+08:00</updated><id>https://pinkr1ver.com/python/2022/03/25/in-python-cv2-you-need-use-copy-method-in-numpy-to-create-a-copy</id><content type="html" xml:base="https://pinkr1ver.com/python/2022/03/25/in-python-cv2-you-need-use-copy-method-in-numpy-to-create-a-copy.html"><![CDATA[<p>Recently, I need to upload my graduation photo in China. There are lots of requirements, so I need to do some processing to my picture. One of them is to do offset, moving the picture pixel value down.</p>
+
+<p>Because I don’t very familiar with cv2 function, so I decide to do brute force way, using <code class="language-plaintext highlighter-rouge">for loop</code></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">new_img</span> <span class="o">=</span> <span class="n">img</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">img</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">img</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">new_img</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">20</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">img</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">new_img</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>But with this code, the result will be wrong like that:</p>
+<h2 id="original-image">Original Image:</h2>
+<p><img src="/assets/img/2022-03-25-in-python-cv2-you-need-use-copy-method-in-numpy-to-create-a-copy/images.png" alt="" /></p>
+
+<h2 id="wrong-results">Wrong Results:</h2>
+<p><img src="/assets/img/2022-03-25-in-python-cv2-you-need-use-copy-method-in-numpy-to-create-a-copy/NewImage.jpg" alt="" /></p>
+
+<p>If you use another method to do this:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">new_img</span> <span class="o">=</span> <span class="n">img</span><span class="p">[:</span><span class="mi">235</span><span class="p">,:]</span>
+<span class="n">bak</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">20</span><span class="p">,:]</span>
+
+
+<span class="n">new_img</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">bak</span><span class="p">,</span> <span class="n">new_img</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+</code></pre></div></div>
+<h2 id="expected-results">Expected Results:</h2>
+<p><img src="/assets/img/2022-03-25-in-python-cv2-you-need-use-copy-method-in-numpy-to-create-a-copy/NewImage2.jpg" alt="" /></p>
+
+<p>The reason why is that when you code <code class="language-plaintext highlighter-rouge">new_img = img</code> in python. The numpy will not create a real variable with new address. See this code:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+    <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="o">&gt;</span> <span class="mi">2410142026512</span>
+<span class="o">&gt;</span> <span class="mi">2410142026512</span>
+
+</code></pre></div></div>
+<p>Guess what, the result is that address of x and y is the same. I guess that when numpy has some calculation will alert numpy to create a real variable. If there is just ‘=’, the numpy will not create real variable. So you need to use .copy() function to create copy of one variable, rather than ‘=’ .</p>
+
+<p>I also ask this question in <a href="https://stackoverflow.com/questions/71606098/python-opencv2-for-loop-to-change-image-pixel-value?noredirect=1#comment126563050_71606098">stackoverflow</a>. This answer is so great. It introduce the concept about <strong>shallow copy and deep copy</strong>.</p>
+
+<p><img src="/assets/img/2022-03-25-in-python-cv2-you-need-use-copy-method-in-numpy-to-create-a-copy/ShallowCopy&amp;DeepCopy.png" alt="" /></p>]]></content><author><name>Yichong Wang</name></author><category term="Python" /><category term="Python" /><category term="opencv-python" /><summary type="html"><![CDATA[In python cv2, you need use .copy() method in Numpy to create a copy]]></summary></entry><entry><title type="html">What is .nii file?</title><link href="https://pinkr1ver.com/bme/2022/03/08/what-is-nii-file.html" rel="alternate" type="text/html" title="What is .nii file?" /><published>2022-03-08T00:00:00+08:00</published><updated>2022-03-08T00:00:00+08:00</updated><id>https://pinkr1ver.com/bme/2022/03/08/what-is-nii-file</id><content type="html" xml:base="https://pinkr1ver.com/bme/2022/03/08/what-is-nii-file.html"><![CDATA[<h1 id="what-is-nii-file">What is .nii file?</h1>
+
+<p>As a BME student, I always meet .nii file though my third and fourth year in college. But I don’t understand .nii file for a long while. So I want to explain the .nii file format very simply to everyone majored in BME.</p>
+
+<h2 id="what-is-nifti">What is NIfTI?</h2>
+<p>The first thing we need to know is the background of .nii file – NIfTI (Neuroimaing Informatics Technology Initiative). NIfTI file format was envisioned about a decade ago as a replacement to the then widespread, yet problematic, analyze 7.5 file format.[1] The main problem of previous file format is lacking adequate information about orientation in space. The primary goal of NIfTI is to provide coordinated and targeted service, training, and research to speed the development and enhance the utility of informatics tools related to neuroimaging.[2]</p>
+
+<h2 id="nifti-1--nifti-2">NIfTI-1 &amp; NIfTI-2</h2>
+<p>The new format called NIfTI-1, which was defined in two meetings of the so called Data Format Working Group(DFWG) and the National Insitutes of Health(NIH), one in the 31 March and another in 02 September of 2003[1]. NIfTI-2 improves the data types supported by NIfTI-1, as well as precision and voxel size[3].
+Both .nii and .nii.gz are the common file extension name for NIfTI file format and commonly, the are both acceptable for most of software. (.nii,gz is .nii compression file)</p>
+
+<h2 id="detail-data-information">Detail Data Information</h2>
+<p>We can learn NIfTI file by reading it metadata[4], you can also useing</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>info = niftiinfo(filename)
+</code></pre></div></div>
+<p>in MATLAB to read meta data from .nii file. 
+You can see:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ans = struct with fields:
+        sizeof_hdr: 348
+          dim_info: ' '
+               dim: [3 256 256 21 1 1 1 1]
+         intent_p1: 0
+         intent_p2: 0
+         intent_p3: 0
+       intent_code: 0
+          datatype: 2
+            bitpix: 8
+       slice_start: 0
+            pixdim: [1 1 1 1 0 0 0 0]
+        vox_offset: 352
+         scl_slope: 0
+         scl_inter: 0
+         slice_end: 0
+        slice_code: 0
+        xyzt_units: 0
+           cal_max: 0
+           cal_min: 0
+    slice_duration: 0
+           toffset: 0
+           descrip: ''
+          aux_file: ''
+        qform_code: 0
+        sform_code: 0
+         quatern_b: 0
+         quatern_c: 0
+         quatern_d: 0
+         qoffset_x: 0
+         qoffset_y: 0
+         qoffset_z: 0
+            srow_x: [0 0 0 0]
+            srow_y: [0 0 0 0]
+            srow_z: [0 0 0 0]
+       intent_name: ''
+             magic: 'n+1 '
+</code></pre></div></div>
+<p>These metadata all stored in the header, which you cann look up offical doc <a href="https://nifti.nimh.nih.gov/pub/dist/src/niftilib/nifti1.h">nifti1.h</a> to see how this metadata store. 
+And you can use <a href="https://github.com/sharkdp/hexyl">hexyl</a> to show hex code of header info.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hexyl -n 348 filenaem.nii
+</code></pre></div></div>
+<p>There are some important header info to show how NIfTI file works.</p>
+
+<h3>…</h3>
+
+<h2 id="appendix-and-reference">Appendix and Reference</h2>
+<p>[1] https://brainder.org/2012/09/23/the-nifti-file-format/</p>
+
+<p>[2] https://nifti.nimh.nih.gov/</p>
+
+<p>[3] https://docs.safe.com/fme/html/FME_Desktop_Documentation/FME_ReadersWriters/nifti/nifti.htm</p>
+
+<p>[4] https://nifti.nimh.nih.gov/pub/dist/src/niftilib/nifti1.h</p>]]></content><author><name>Yichong Wang</name></author><category term="BME" /><category term="BME" /><category term="MRI" /><summary type="html"><![CDATA[As a BME student, I always meet .nii file though my third and fourth year in college. But I don't understand .nii file for a long while. So I want to explain the .nii file format very simply to everyone majored in BME.]]></summary></entry><entry><title type="html">Hello World</title><link href="https://pinkr1ver.com/nsfw/2022/03/03/hello-world.html" rel="alternate" type="text/html" title="Hello World" /><published>2022-03-03T00:00:00+08:00</published><updated>2022-03-03T00:00:00+08:00</updated><id>https://pinkr1ver.com/nsfw/2022/03/03/hello-world</id><content type="html" xml:base="https://pinkr1ver.com/nsfw/2022/03/03/hello-world.html"><![CDATA[<h1 id="hello-world">Hello, world</h1>
+<p><img src="/assets/img/2022-03-03-hello-world/Hello_world.jpg" alt="Hello, world" /></p>]]></content><author><name>{&quot;fullname&quot;=&gt;&quot;Jude Wang&quot;, &quot;github&quot;=&gt;&quot;https://github.com/PinkR1ver&quot;, &quot;email&quot;=&gt;&quot;pinkr1veroops@gmail.com&quot;, &quot;twitter&quot;=&gt;&quot;PinkR1ver&quot;}</name><email>pinkr1veroops@gmail.com</email></author><category term="NSFW" /><category term="NSFW" /><summary type="html"><![CDATA[Hello, world]]></summary></entry></feed>

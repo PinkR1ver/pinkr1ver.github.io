@@ -6,7 +6,7 @@ description: >
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "https://pinkr1ver.com" # the base hostname & protocol for your site
 
-author:
+author: 
   fullname: Jude Wang
   github: https://github.com/PinkR1ver
   email: pinkr1veroops@gmail.com
@@ -21,3 +21,6 @@ styles: [agate, androidstudio, arta, asceti, atelier-cave.dark, atelier-cave.lig
 # Build settings
 highlighter: null
 markdown: kramdown
+
+plugins:
+  - jekyll-feed
