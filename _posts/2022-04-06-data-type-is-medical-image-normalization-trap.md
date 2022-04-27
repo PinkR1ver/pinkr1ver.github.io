@@ -8,8 +8,8 @@ tags:
   - Deep learning
   - MRI
   - BME
-description: data type is not always thbe normalization standard
-subtitle: data type is not always thbe normalization standard
+description: data type is not always the normalization standard
+subtitle: data type is not always the normalization standard
 ---
 
 # Background

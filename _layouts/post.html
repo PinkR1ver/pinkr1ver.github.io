@@ -3,7 +3,9 @@ layout: default
 ---
 {% include page/title.html %}
 
-{{ content }}
+
+{{ content | markdownify | replace: '<p>', '<p style="text-indent: 2em;">'}}
+
 
 
 <div id="disqus_thread"></div>

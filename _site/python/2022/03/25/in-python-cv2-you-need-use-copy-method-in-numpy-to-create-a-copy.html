@@ -57,9 +57,10 @@
 <div class="page-title__subtitle">shallow copy and deep copy?</div>
 </h1>
 
-<p>Recently, I need to upload my graduation photo in China. There are lots of requirements, so I need to do some processing to my picture. One of them is to do offset, moving the picture pixel value down.</p>
 
-<p>Because I don’t very familiar with cv2 function, so I decide to do brute force way, using <code class="language-plaintext highlighter-rouge">for loop</code></p>
+<p style="text-indent: 2em;">Recently, I need to upload my graduation photo in China. There are lots of requirements, so I need to do some processing to my picture. One of them is to do offset, moving the picture pixel value down.</p>
+
+<p style="text-indent: 2em;">Because I don’t very familiar with cv2 function, so I decide to do brute force way, using <code class="language-plaintext highlighter-rouge">for loop</code></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">new_img</span> <span class="o">=</span> <span class="n">img</span>
 
@@ -72,14 +73,14 @@
         <span class="n">new_img</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
 </code></pre></div></div>
 
-<p>But with this code, the result will be wrong like that:</p>
+<p style="text-indent: 2em;">But with this code, the result will be wrong like that:</p>
 <h2 id="original-image">Original Image:</h2>
-<p><img src="/assets/img/2022-03-25-in-python-cv2-you-need-use-copy-method-in-numpy-to-create-a-copy/images.png" alt="" /></p>
+<p style="text-indent: 2em;"><img src="/assets/img/2022-03-25-in-python-cv2-you-need-use-copy-method-in-numpy-to-create-a-copy/images.png" alt="" /></p>
 
 <h2 id="wrong-results">Wrong Results:</h2>
-<p><img src="/assets/img/2022-03-25-in-python-cv2-you-need-use-copy-method-in-numpy-to-create-a-copy/NewImage.jpg" alt="" /></p>
+<p style="text-indent: 2em;"><img src="/assets/img/2022-03-25-in-python-cv2-you-need-use-copy-method-in-numpy-to-create-a-copy/NewImage.jpg" alt="" /></p>
 
-<p>If you use another method to do this:</p>
+<p style="text-indent: 2em;">If you use another method to do this:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">new_img</span> <span class="o">=</span> <span class="n">img</span><span class="p">[:</span><span class="mi">235</span><span class="p">,:]</span>
 <span class="n">bak</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">20</span><span class="p">,:]</span>
 
@@ -92,9 +93,9 @@
 
 </code></pre></div></div>
 <h2 id="expected-results">Expected Results:</h2>
-<p><img src="/assets/img/2022-03-25-in-python-cv2-you-need-use-copy-method-in-numpy-to-create-a-copy/NewImage2.jpg" alt="" /></p>
+<p style="text-indent: 2em;"><img src="/assets/img/2022-03-25-in-python-cv2-you-need-use-copy-method-in-numpy-to-create-a-copy/NewImage2.jpg" alt="" /></p>
 
-<p>The reason why is that when you code <code class="language-plaintext highlighter-rouge">new_img = img</code> in python. The numpy will not create a real variable with new address. See this code:</p>
+<p style="text-indent: 2em;">The reason why is that when you code <code class="language-plaintext highlighter-rouge">new_img = img</code> in python. The numpy will not create a real variable with new address. See this code:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
@@ -109,11 +110,12 @@
 <span class="o">&gt;</span> <span class="mi">2410142026512</span>
 
 </code></pre></div></div>
-<p>Guess what, the result is that address of x and y is the same. I guess that when numpy has some calculation will alert numpy to create a real variable. If there is just ‘=’, the numpy will not create real variable. So you need to use .copy() function to create copy of one variable, rather than ‘=’ .</p>
+<p style="text-indent: 2em;">Guess what, the result is that address of x and y is the same. I guess that when numpy has some calculation will alert numpy to create a real variable. If there is just ‘=’, the numpy will not create real variable. So you need to use .copy() function to create copy of one variable, rather than ‘=’ .</p>
 
-<p>I also ask this question in <a href="https://stackoverflow.com/questions/71606098/python-opencv2-for-loop-to-change-image-pixel-value?noredirect=1#comment126563050_71606098">stackoverflow</a>. This answer is so great. It introduce the concept about <strong>shallow copy and deep copy</strong>.</p>
+<p style="text-indent: 2em;">I also ask this question in <a href="https://stackoverflow.com/questions/71606098/python-opencv2-for-loop-to-change-image-pixel-value?noredirect=1#comment126563050_71606098">stackoverflow</a>. This answer is so great. It introduce the concept about <strong>shallow copy and deep copy</strong>.</p>
 
-<p><img src="/assets/img/2022-03-25-in-python-cv2-you-need-use-copy-method-in-numpy-to-create-a-copy/ShallowCopy&amp;DeepCopy.png" alt="" /></p>
+<p style="text-indent: 2em;"><img src="/assets/img/2022-03-25-in-python-cv2-you-need-use-copy-method-in-numpy-to-create-a-copy/ShallowCopy&amp;DeepCopy.png" alt="" /></p>
+
 
 
 

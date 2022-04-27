@@ -24,3 +24,14 @@ markdown: kramdown
 
 plugins:
   - jekyll-feed
+
+jekyll_compose:
+  default_front_matter:
+    posts:
+      layout: post
+      author: Yichong Wang
+      category: 
+      tags: 
+      subtitle: 
+      description:
+      
