@@ -1,4 +1,4 @@
-I"K<!--
+I"Z<!--
 <span style="float: right; "><a href="/assets/resume.pdf"><strong>> Download as PDF</strong></a> </span>
 <br>
 -->
@@ -31,6 +31,7 @@
 <img align="left" alt="matlab" height="35px" style="margin:0px 4px" src="/assets/img/skills/matlab.png" />
 <img align="left" alt="c" height="35px" style="margin:0px 4px" src="/assets/img/skills/c.webp" />
 <img align="left" alt="github" height="35px" style="margin:0px 4px" src="/assets/img/skills/github.svg" />
+<br />
 <br /></p>
 
 <h3 id="learning"><strong>Learning</strong></h3>
@@ -41,7 +42,9 @@
 <img align="left" alt="opencv" height="35px" style="margin:0px 4px" src="/assets/img/skills/opencv.png" />
 <img align="left" alt="cmake" height="35px" style="margin:0px 4px" src="/assets/img/skills/cmake.webp" />
 <img align="left" alt="linux" height="35px" style="margin:0px 4px" src="/assets/img/skills/linux.png" />
-<img align="left" alt="Ubuntu" height="35px" style="margin:0px 4px" src="/assets/img/skills/ubuntu.png" /> <br /></p>
+<img align="left" alt="Ubuntu" height="35px" style="margin:0px 4px" src="/assets/img/skills/ubuntu.png" /> 
+<br />
+<br /></p>
 
 <h3 id="others"><strong>Others</strong></h3>
 <ul>

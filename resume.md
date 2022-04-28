@@ -38,6 +38,7 @@ subtitle: A 😅 Guy
 <img align="left" alt="c" height="35px" style="margin:0px 4px" src="/assets/img/skills/c.webp" />
 <img align="left" alt="github" height="35px" style="margin:0px 4px" src="/assets/img/skills/github.svg" />
 <br>
+<br>
 
 ### **Learning**
 <img align="left" alt="c++" height="35px" style="margin:0px 4px" src="/assets/img/skills/c++.png" />
@@ -47,7 +48,9 @@ subtitle: A 😅 Guy
 <img align="left" alt="opencv" height="35px" style="margin:0px 4px" src="/assets/img/skills/opencv.png" />
 <img align="left" alt="cmake" height="35px" style="margin:0px 4px" src="/assets/img/skills/cmake.webp" />
 <img align="left" alt="linux" height="35px" style="margin:0px 4px" src="/assets/img/skills/linux.png" />
-<img align="left" alt="Ubuntu" height="35px" style="margin:0px 4px" src="/assets/img/skills/ubuntu.png" /> <br>
+<img align="left" alt="Ubuntu" height="35px" style="margin:0px 4px" src="/assets/img/skills/ubuntu.png" /> 
+<br>
+<br>
 
 ### **Others**
 * Image Processing
