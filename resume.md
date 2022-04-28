@@ -37,7 +37,6 @@ subtitle: A 😅 Guy
 <img align="left" alt="github" height="35px" style="margin:0px 4px" src="/assets/img/skills/github.svg" />
 <img align="left" alt="vscode" height="35px" style="margin:0px 4px" src="/assets/img/skills/vscode.png" />
 <br>
-<br>
 
 
 ### **Knowing**
@@ -53,7 +52,6 @@ subtitle: A 😅 Guy
 <img align="left" alt="linux" height="35px" style="margin:0px 4px" src="/assets/img/skills/linux.png" />
 <img align="left" alt="Ubuntu" height="35px" style="margin:0px 4px" src="/assets/img/skills/ubuntu.png" /> 
 <br>
-<br>
 
 ### **Learning**
 <img align="left" alt="c++" height="35px" style="margin:0px 4px" src="/assets/img/skills/c++.png" />
@@ -68,7 +66,6 @@ subtitle: A 😅 Guy
 <img align="left" alt="cmake" height="35px" style="margin:0px 4px" src="/assets/img/skills/cmake.webp" />
 <img align="left" alt="linux" height="35px" style="margin:0px 4px" src="/assets/img/skills/linux.png" />
 <img align="left" alt="Ubuntu" height="35px" style="margin:0px 4px" src="/assets/img/skills/ubuntu.png" /> 
-<br>
 <br>
 
 ### **Others**
