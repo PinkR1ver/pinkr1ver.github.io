@@ -76,9 +76,9 @@ This project targets at instance segmentation given images on teeth . We have im
 **FYP**, Radiogenomic Analysis of Glioblastoma with Deep learning Techniques <span style="float: right; ">2021-2022</span> <br>
 I finish this FYP instructed by [Zhiwei Huang](https://cde.nus.edu.sg/bme/staff/dr-huang-zhiwei/) in NUS. This project contains three part. MRI image segmentation by U-Net, radiomics features extraction by *pyradiomics*, and feature vector classification by machine learning such as random forest. [https://github.com/PinkR1ver/Radiogenemics--on-Ivy-Gap](https://github.com/PinkR1ver/Radiogenemics--on-Ivy-Gap)
 
-## Honors
+## 🏆 Honors
 *Zhejiang University Scholarship - Third Prize*  <span style="float: right; ">2018-2019</span>
 
-## Publications
+## 📰 Publications
 **None right now...**
 
