@@ -27,46 +27,49 @@ subtitle: A 😅 Guy
 
 ## 🤹🏽 Skills
 ### **Familiar with**
-<img align="left" alt="python" height="35px" style="margin:0px 4px" src="/assets/img/skills/python.png" />
-<img align="left" alt="anaconda" height="35px" style="margin:0px 4px" src="/assets/img/skills/anaconda.png" />
-<img align="left" alt="bash" height="35px" style="margin:0px 4px" src="/assets/img/skills/bash.png" />
-<img align="left" alt="numpy" height="35px" style="margin:0px 4px" src="/assets/img/skills/numpy.png" />
-<img align="left" alt="pytorch" height="35px" style="margin:0px 4px" src="/assets/img/skills/pytorch.png" />
-<img align="left" alt="git" height="35px" style="margin:0px 4px" src="/assets/img/skills/git.png" />
-<img align="left" alt="c" height="35px" style="margin:0px 4px" src="/assets/img/skills/c.webp" />
-<img align="left" alt="github" height="35px" style="margin:0px 4px" src="/assets/img/skills/github.svg" />
-<img align="left" alt="vscode" height="35px" style="margin:0px 4px" src="/assets/img/skills/vscode.png" />
-<br>
+<div style="display: flex; white-space:nowrap; overflow:auto; ">
+  <img align="left" alt="python" height="35px" style="margin:0px 4px" src="/assets/img/skills/python.png" />
+  <img align="left" alt="anaconda" height="35px" style="margin:0px 4px" src="/assets/img/skills/anaconda.png" />
+  <img align="left" alt="bash" height="35px" style="margin:0px 4px" src="/assets/img/skills/bash.png" />
+  <img align="left" alt="numpy" height="35px" style="margin:0px 4px" src="/assets/img/skills/numpy.png" />
+  <img align="left" alt="pytorch" height="35px" style="margin:0px 4px" src="/assets/img/skills/pytorch.png" />
+  <img align="left" alt="git" height="35px" style="margin:0px 4px" src="/assets/img/skills/git.png" />
+  <img align="left" alt="c" height="35px" style="margin:0px 4px" src="/assets/img/skills/c.webp" />
+  <img align="left" alt="github" height="35px" style="margin:0px 4px" src="/assets/img/skills/github.svg" />
+  <img align="left" alt="vscode" height="35px" style="margin:0px 4px" src="/assets/img/skills/vscode.png" />
+</div>
 
 
 ### **Knowing**
-<img align="left" alt="pycharm" height="35px" style="margin:0px 4px" src="/assets/img/skills/pycharm.png" />
-<img align="left" alt="vim" height="35px" style="margin:0px 4px" src="/assets/img/skills/vim.png" />
-<img align="left" alt="pandas" height="35px" style="margin:0px 4px" src="/assets/img/skills/pandas.png" />
-<img align="left" alt="matlab" height="35px" style="margin:0px 4px" src="/assets/img/skills/matlab.png" />
-<img align="left" alt="blogdown" height="35px" style="margin:0px 4px" src="/assets/img/skills/blogdown.png" />
-<img align="left" alt="RStudio" height="35px" style="margin:0px 4px" src="/assets/img/skills/rstudio.png" />
-<img align="left" alt="R" height="35px" style="margin:0px 4px" src="/assets/img/skills/r.png" />
-<img align="left" alt="opencv" height="35px" style="margin:0px 4px" src="/assets/img/skills/opencv.png" />
-<img align="left" alt="cmake" height="35px" style="margin:0px 4px" src="/assets/img/skills/cmake.webp" />
-<img align="left" alt="linux" height="35px" style="margin:0px 4px" src="/assets/img/skills/linux.png" />
-<img align="left" alt="Ubuntu" height="35px" style="margin:0px 4px" src="/assets/img/skills/ubuntu.png" /> 
-<br>
+<div style="display: flex; white-space:nowrap; overflow:auto; ">
+  <img align="left" alt="pycharm" height="35px" style="margin:0px 4px" src="/assets/img/skills/pycharm.png" />
+  <img align="left" alt="vim" height="35px" style="margin:0px 4px" src="/assets/img/skills/vim.png" />
+  <img align="left" alt="pandas" height="35px" style="margin:0px 4px" src="/assets/img/skills/pandas.png" />
+  <img align="left" alt="matlab" height="35px" style="margin:0px 4px" src="/assets/img/skills/matlab.png" />
+  <img align="left" alt="blogdown" height="35px" style="margin:0px 4px" src="/assets/img/skills/blogdown.png" />
+  <img align="left" alt="RStudio" height="35px" style="margin:0px 4px" src="/assets/img/skills/rstudio.png" />
+  <img align="left" alt="R" height="35px" style="margin:0px 4px" src="/assets/img/skills/r.png" />
+  <img align="left" alt="opencv" height="35px" style="margin:0px 4px" src="/assets/img/skills/opencv.png" />
+  <img align="left" alt="cmake" height="35px" style="margin:0px 4px" src="/assets/img/skills/cmake.webp" />
+  <img align="left" alt="linux" height="35px" style="margin:0px 4px" src="/assets/img/skills/linux.png" />
+  <img align="left" alt="Ubuntu" height="35px" style="margin:0px 4px" src="/assets/img/skills/ubuntu.png" /> 
+</div>
 
 ### **Learning**
-<img align="left" alt="c++" height="35px" style="margin:0px 4px" src="/assets/img/skills/c++.png" />
-<img align="left" alt="html" height="35px" style="margin:0px 4px" src="/assets/img/skills/html5.svg" />
-<img align="left" alt="css" height="35px" style="margin:0px 4px" src="/assets/img/skills/css3.svg" />
-<img align="left" alt="js" height="35px" style="margin:0px 4px" src="/assets/img/skills/javascript.svg" />
-<img align="left" alt="vue" height="35px" style="margin:0px 4px" src="/assets/img/skills/vuejs.svg" />
-<img align="left" alt="django" height="35px" style="margin:0px 4px" src="/assets/img/skills/django.webp" />
-<img align="left" alt="eth" height="35px" style="margin:0px 4px" src="/assets/img/skills/eth.png" />
-<img align="left" alt="jekyll" height="35px" style="margin:0px 4px" src="/assets/img/skills/jekyll.webp" />
-<img align="left" alt="opencv" height="35px" style="margin:0px 4px" src="/assets/img/skills/opencv.png" />
-<img align="left" alt="cmake" height="35px" style="margin:0px 4px" src="/assets/img/skills/cmake.webp" />
-<img align="left" alt="linux" height="35px" style="margin:0px 4px" src="/assets/img/skills/linux.png" />
-<img align="left" alt="Ubuntu" height="35px" style="margin:0px 4px" src="/assets/img/skills/ubuntu.png" /> 
-<br>
+<div style="display: flex; white-space:nowrap; overflow:auto; ">
+  <img align="left" alt="c++" height="35px" style="margin:0px 4px" src="/assets/img/skills/c++.png" />
+  <img align="left" alt="html" height="35px" style="margin:0px 4px" src="/assets/img/skills/html5.svg" />
+  <img align="left" alt="css" height="35px" style="margin:0px 4px" src="/assets/img/skills/css3.svg" />
+  <img align="left" alt="js" height="35px" style="margin:0px 4px" src="/assets/img/skills/javascript.svg" />
+  <img align="left" alt="vue" height="35px" style="margin:0px 4px" src="/assets/img/skills/vuejs.svg" />
+  <img align="left" alt="django" height="35px" style="margin:0px 4px" src="/assets/img/skills/django.webp" />
+  <img align="left" alt="eth" height="35px" style="margin:0px 4px" src="/assets/img/skills/eth.png" />
+  <img align="left" alt="jekyll" height="35px" style="margin:0px 4px" src="/assets/img/skills/jekyll.webp" />
+  <img align="left" alt="opencv" height="35px" style="margin:0px 4px" src="/assets/img/skills/opencv.png" />
+  <img align="left" alt="cmake" height="35px" style="margin:0px 4px" src="/assets/img/skills/cmake.webp" />
+  <img align="left" alt="linux" height="35px" style="margin:0px 4px" src="/assets/img/skills/linux.png" />
+  <img align="left" alt="Ubuntu" height="35px" style="margin:0px 4px" src="/assets/img/skills/ubuntu.png" /> 
+</div>
 
 ### **Others**
 * Image Processing
