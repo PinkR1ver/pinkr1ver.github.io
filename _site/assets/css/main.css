@@ -10,6 +10,13 @@
     color: #57A;
     font-weight: bold;
     text-decoration: none; }
+  a:hover{
+    border-bottom: 1px solid #57A;
+  }
+
+  h2,h3,h4 {
+    color: #57A;
+  }
 
   p, ul, ol, dl {
     font-size: 100%;
