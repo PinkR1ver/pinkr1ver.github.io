@@ -241,6 +241,10 @@
       text-align: center;
       width: 100%; }
 
+    .gallery {
+      grid-template-columns: repeat(4, 100px);
+    }
+
   }
 
 /* =Glitch effect, Source: http://codepen.io/bulby97/pen/fcvay *//*************************************************************/
