@@ -160,6 +160,12 @@
     text-align: center;
   }
 
+  .gallery {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 15px;
+  }
+
 /* =Page navigation *//*************************************************************/
   .PageNavigation {
     display: block;
