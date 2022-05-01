@@ -166,6 +166,10 @@
     grid-gap: 15px;
   }
 
+  .gallery-image {
+    width: 200px;
+  }
+
 /* =Page navigation *//*************************************************************/
   .PageNavigation {
     display: block;
@@ -243,6 +247,10 @@
 
     .gallery {
       grid-template-columns: repeat(4, 100px);
+    }
+
+    .gallery-image {
+      width: 100px;
     }
 
   }
