@@ -1,8 +1,10 @@
 ---
 layout: page
-title: Digit Artwork
+title: Collection
 subtitle: Welcome to my collection
 ---
+
+<h1 style="color: #57A">Digit ArtWork</h1>
 
 I think NFT is a great way to prove the digit artwork's information. So some of my digit artwork will be stored in NFT format. Here's my:
 
