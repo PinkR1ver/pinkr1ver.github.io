@@ -1,64 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title> Digit Artwork — Welcome to my collection  | PinkR1ver Studio</title>
-<meta name="description" content="Jude Wang's Blog
-">
-
-<link rel="canonical" href="/digit_artwork.html">
-<link rel="icon" type="image/jpeg" href="/assets/img/pinkr1ver.png"/>
-<link rel="stylesheet" href="/assets/vendor/normalize-css/normalize.css">
-<link rel="stylesheet" href="/assets/css/main.css">
-
-<link rel="stylesheet" href="/assets/vendor/highlight/styles/agate.css">
-
-<link rel="stylesheet" href="/assets/vendor/font-awesome/css/font-awesome.css">
-<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-</head>
-<body>
-<div class="wrapper">
-<header class="header">
-<div class="navigation">
-<a href="/" class="logo">PinkR1ver Studio</a>
-<ul class="menu">
-<li class="menu__entry"><a href="/resume">Resume</a></li>
-<li class="menu__entry"><a href="/blog">Blog</a></li>
-<li class="menu__entry"><a href="https://pinkr1ver.notion.site/pinkr1ver/3cfdd332b9a94b20bca041f2aa2bdcd2?v=24e696e6ab754386a710bc8e83976357">Photo gallery</a></li>
-<li class="menu__entry"><a href="/digit_artwork">Digit Artwork</a></li>
-</ul>
-</div>
-<ul class="social-links">
-
-<a href="mailto:pinkr1veroops@gmail.com" class="social-links__entry" target="_blank">
-<i class="fa fa-envelope-square"></i>
-</a>
-
-
-<a href="https://github.com/PinkR1ver" class="social-links__entry" target="_blank">
-<i class="fa fa-github"></i>
-</a>
-
-
-
-<a href="https://twitter.com/PinkR1ver" class="social-links__entry" target="_blank">
-<i class="fa fa-twitter"></i>
-</a>
-
-
-<a href="feed.xml" class="social-links__entry" target="_blank">
-<i class="fa fa-rss"></i>
-</a>
-
-</ul>
-</header>
-<h1 class="page-title">
-<div class="page-title__text">Digit Artwork</div>
-<div class="page-title__subtitle">Welcome to my collection</div>
-</h1>
-
+I"#
 <p>I think NFT is a great way to prove the digit artwork’s information. So some of my digit artwork will be stored in NFT format. Here’s my:</p>
 
 <p>Public Address: <strong>0x27B3682843b5E0a1D113824d69ED62eDdFeE8d01</strong></p>
@@ -91,10 +31,4 @@ You can generate the 0xMonkey by this opensource website:<a href="https://0xmonk
     <img src="/assets/img/digit_artwork/0xMonkey_11.png" class="gallery-image" alt="0xMonkey_11" />
 </div>
 
-
-
-</div>
-<script src="/assets/vendor/highlight/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-</body>
-</html>
+:ET
