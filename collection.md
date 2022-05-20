@@ -10,6 +10,8 @@ I think NFT is a great way to prove the digit artwork's information. So some of 
 
 Public Address: **0x19f1D277E83b199a69126CC48160B8ea1D43962b**
 
+Public Address: **0x27B3682843b5E0a1D113824d69ED62eDdFeE8d01**
+
 [Rarible](https://rarible.com/user/0x19f1D277E83b199a69126CC48160B8ea1D43962b/owned)
 
 ## [Digit Giraffes](https://twitter.com/TribeOfGiraffes)
