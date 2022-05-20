@@ -8,9 +8,9 @@ subtitle: Welcome to my collection
 
 I think NFT is a great way to prove the digit artwork's information. So some of my digit artwork will be stored in NFT format. Here's my:
 
-Public Address: **0x27B3682843b5E0a1D113824d69ED62eDdFeE8d01**
+Public Address: **0x19f1D277E83b199a69126CC48160B8ea1D43962b**
 
-[Rarible](https://rarible.com/user/0x27B3682843b5E0a1D113824d69ED62eDdFeE8d01/owned) ,[OpenSea](https://opensea.io/PinkR1ver)
+[Rarible](https://rarible.com/user/0x19f1D277E83b199a69126CC48160B8ea1D43962b/owned)
 
 ## [Digit Giraffes](https://twitter.com/TribeOfGiraffes)
 <center>
