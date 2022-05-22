@@ -15,7 +15,7 @@ Public Address: **0x27B3682843b5E0a1D113824d69ED62eDdFeE8d01**
 [Rarible](https://rarible.com/pinkr1ver)
 
 ## [Boki](https://www.boki.art/)
-<a href="https://www.boki.art/">
+<a href="https://rarible.com/token/0x248139afb8d3a2e16154fbe4fb528a3a214fd8e7:5661?tab=details">
     <img src="/assets/img/digit_artwork/boki.gif" alt="Boki" style="  display: block; margin-left: auto; margin-right: auto;width: 50%;">
 </a>
 
