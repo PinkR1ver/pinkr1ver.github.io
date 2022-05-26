@@ -21,7 +21,9 @@ Public Address: **0x27B3682843b5E0a1D113824d69ED62eDdFeE8d01**
 
 ## [Digit Giraffes](https://twitter.com/TribeOfGiraffes)
 <center>
+<a href="https://rarible.com/token/0x495f947276749ce646f68ac8c248420045cb7b5e:40482595849772694285173713041642282097106100196042549765489076692661152251905?tab=owners">
     <img src="https://img.rarible.com/prod/image/upload/t_image_big/prod-itemImages/0x495f947276749ce646f68ac8c248420045cb7b5e:40482595849772694285173713041642282097106100196042549765489076692661152251905/9338aaca" alt="Giraffe #6759" style="display: block; margin-left: auto margin-right: auto; width: 50%;">
+</a>
 </center>
 
 ## [0xMonkey](http://0xmonkey.xyz/)
