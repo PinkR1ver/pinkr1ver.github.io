@@ -19,6 +19,12 @@ Public Address: **0x27B3682843b5E0a1D113824d69ED62eDdFeE8d01**
     <img src="/assets/img/digit_artwork/Boki_6597.png" alt="Boki #6597" style="  display: block; margin-left: auto; margin-right: auto;width: 50%;">
 </a>
 
+## [Third Eye Club](https://www.thirdeyeclub.io/)
+<a href="https://rarible.com/token/0x6fd4eb990ed2e7bb2b1203e7f728e29904a4d5a4:1054?tab=details">
+    <img src="/assets/img/digit_artwork/Third_Eye_Club.gif" alt="Thrid Eye club #1054" style="display: block; margin-left: auto; margin-right: auto;width: 50%;">
+</a>
+
+
 ## [Digit Giraffes](https://twitter.com/TribeOfGiraffes)
 <center>
 <a href="https://rarible.com/token/0x495f947276749ce646f68ac8c248420045cb7b5e:40482595849772694285173713041642282097106100196042549765489076692661152251905?tab=owners">
