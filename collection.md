@@ -24,6 +24,11 @@ Public Address: **0x27B3682843b5E0a1D113824d69ED62eDdFeE8d01**
     <img src="/assets/img/digit_artwork/Third_Eye_Club.gif" alt="Thrid Eye club #1054" style="display: block; margin-left: auto; margin-right: auto;width: 50%;">
 </a>
 
+## [Chief Toads](https://www.chieftoad.com/)
+<a href="https://rarible.com/token/polygon/0x1871464f087db27823cff66aa88599aa4815ae95:498019?tab=details">
+    <img src="/assets/img/digit_artwork/Gamabunta_Chief_Toad.png" alt="Gamabunta Chief Toad" style="display: block; margin-left: auto; margin-right: auto;width: 50%;">
+</a>
+
 
 ## [Digit Giraffes](https://twitter.com/TribeOfGiraffes)
 <center>
