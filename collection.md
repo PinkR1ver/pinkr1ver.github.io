@@ -15,13 +15,13 @@ Public Address: **0x27B3682843b5E0a1D113824d69ED62eDdFeE8d01**
 [Rarible](https://rarible.com/pinkr1ver)
 
 ## [Boki](https://www.boki.art/)
-<a href="https://rarible.com/token/0x248139afb8d3a2e16154fbe4fb528a3a214fd8e7:5661?tab=details">
-    <img src="/assets/img/digit_artwork/Boki_6597.png" alt="Lil Ghost #4503" style="  display: block; margin-left: auto; margin-right: auto;width: 50%;">
+<a href="https://rarible.com/token/0x248139afb8d3a2e16154fbe4fb528a3a214fd8e7:2059?tab=details">
+    <img src="/assets/img/digit_artwork/Boki_2995.png" alt="Boki #2995" style="  display: block; margin-left: auto; margin-right: auto;width: 50%;">
 </a>
 
 ## [Lil Ghost](https://www.weirdoghost.com/)
 <a href="https://rarible.com/token/0x9401518f4ebba857baa879d9f76e1cc8b31ed197:4503?tab=details">
-    <img src="/assets/img/digit_artwork/Lil_Ghost_4503.png" alt="Boki #6597" style="  display: block; margin-left: auto; margin-right: auto;width: 50%;">
+    <img src="/assets/img/digit_artwork/Lil_Ghost_4503.png" alt="Lil Ghost #4503" style="  display: block; margin-left: auto; margin-right: auto;width: 50%;">
 </a>
 
 ## [Third Eye Club](https://www.thirdeyeclub.io/)
