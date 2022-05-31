@@ -19,14 +19,19 @@ Public Address: **0x27B3682843b5E0a1D113824d69ED62eDdFeE8d01**
     <img src="/assets/img/digit_artwork/Boki_2995.png" alt="Boki #2995" style="  display: block; margin-left: auto; margin-right: auto;width: 50%;">
 </a>
 
-## [Lil Ghost](https://www.weirdoghost.com/)
+## [BBRC × Ivy Boy](https://bbrc.io/)
 <a href="https://rarible.com/token/0x9401518f4ebba857baa879d9f76e1cc8b31ed197:4503?tab=details">
+    <img src="/assets/img/digit_artwork/IVYBOY_3020.png" alt="IVYBOY #3020" style="  display: block; margin-left: auto; margin-right: auto;width: 50%;">
+</a>
+
+## [Lil Ghost](https://www.weirdoghost.com/)
+<a href="https://rarible.com/token/0x809d8f2b12454fc07408d2479cf6dc701ecd5a9f:3020">
     <img src="/assets/img/digit_artwork/Lil_Ghost_4503.png" alt="Lil Ghost #4503" style="  display: block; margin-left: auto; margin-right: auto;width: 50%;">
 </a>
 
 ## [Third Eye Club](https://www.thirdeyeclub.io/)
 <a href="https://rarible.com/token/0x6fd4eb990ed2e7bb2b1203e7f728e29904a4d5a4:1054?tab=details">
-    <img src="/assets/img/digit_artwork/Third_Eye_Club.gif" alt="Thrid Eye club #1054" style="display: block; margin-left: auto; margin-right: auto;width: 50%;">
+    <img src="/assets/img/digit_artwork/Third_Eye_Club_1054.jpg" alt="Thrid Eye club #1054" style="display: block; margin-left: auto; margin-right: auto;width: 50%;">
 </a>
 
 ## [Chief Toads](https://www.chieftoad.com/)
