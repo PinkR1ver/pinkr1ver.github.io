@@ -23,10 +23,19 @@ Public Address: **0x27B3682843b5E0a1D113824d69ED62eDdFeE8d01**
 
 <br>
 
+<a href="https://rarible.com/token/0x809d8f2b12454fc07408d2479cf6dc701ecd5a9f:4308?tab=details">
+    <img src="/assets/img/digit_artwork/IVYBOY_4308.png" alt="IVYBOY #4308" style="margin-left: auto; margin-right: auto;width: 40%;">
+</a> 
+<figcaption>IVYBOY #4308</figcaption>
+
+<br>
+
 <a href="https://rarible.com/token/0x809d8f2b12454fc07408d2479cf6dc701ecd5a9f:3020">
     <img src="/assets/img/digit_artwork/Lil_Ghost_4503.png" alt="Lil Ghost #4503" style="margin-left: auto; margin-right: auto;width: 40%;">
 </a> 
 <figcaption>Lil Ghost#4503</figcaption>
+
+
 </div> 
 
 
