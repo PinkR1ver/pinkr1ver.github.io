@@ -14,57 +14,32 @@ Public Address: **0x27B3682843b5E0a1D113824d69ED62eDdFeE8d01**
 
 [Rarible](https://rarible.com/pinkr1ver)
 
-## [Boki](https://www.boki.art/)
+## Favourite NFT collection
+<div>
 <a href="https://rarible.com/token/0x248139afb8d3a2e16154fbe4fb528a3a214fd8e7:2059?tab=details">
-    <img src="/assets/img/digit_artwork/Boki_2995.png" alt="Boki #2995" style="  display: block; margin-left: auto; margin-right: auto;width: 50%;">
+    <img src="/assets/img/digit_artwork/Boki_2995.png" alt="Boki #2995" style="margin-left: auto; margin-right: auto;width: 40%;">
 </a>
+<figcaption>Boki#2995</figcaption>
 
-## [BBRC × Ivy Boy](https://bbrc.io/)
-<a href="https://rarible.com/token/0x9401518f4ebba857baa879d9f76e1cc8b31ed197:4503?tab=details">
-    <img src="/assets/img/digit_artwork/IVYBOY_3020.png" alt="IVYBOY #3020" style="  display: block; margin-left: auto; margin-right: auto;width: 50%;">
-</a>
+<br>
 
-## [Lil Ghost](https://www.weirdoghost.com/)
 <a href="https://rarible.com/token/0x809d8f2b12454fc07408d2479cf6dc701ecd5a9f:3020">
-    <img src="/assets/img/digit_artwork/Lil_Ghost_4503.png" alt="Lil Ghost #4503" style="  display: block; margin-left: auto; margin-right: auto;width: 50%;">
-</a>
-
-## [Third Eye Club](https://www.thirdeyeclub.io/)
-<a href="https://rarible.com/token/0x6fd4eb990ed2e7bb2b1203e7f728e29904a4d5a4:1054?tab=details">
-    <img src="/assets/img/digit_artwork/Third_Eye_Club_1054.jpg" alt="Thrid Eye club #1054" style="display: block; margin-left: auto; margin-right: auto;width: 50%;">
-</a>
-
-## [Chief Toads](https://www.chieftoad.com/)
-<a href="https://rarible.com/token/polygon/0x1871464f087db27823cff66aa88599aa4815ae95:498019?tab=details">
-    <img src="/assets/img/digit_artwork/Gamabunta_Chief_Toad.png" alt="Gamabunta Chief Toad" style="display: block; margin-left: auto; margin-right: auto;width: 50%;">
-</a>
+    <img src="/assets/img/digit_artwork/Lil_Ghost_4503.png" alt="Lil Ghost #4503" style="margin-left: auto; margin-right: auto;width: 40%;">
+</a> 
+<figcaption>Lil Ghost#4503</figcaption>
+</div> 
 
 
-## [Digit Giraffes](https://twitter.com/TribeOfGiraffes)
-<center>
-<a href="https://rarible.com/token/0x495f947276749ce646f68ac8c248420045cb7b5e:40482595849772694285173713041642282097106100196042549765489076692661152251905?tab=owners">
-    <img src="https://img.rarible.com/prod/image/upload/t_image_big/prod-itemImages/0x495f947276749ce646f68ac8c248420045cb7b5e:40482595849772694285173713041642282097106100196042549765489076692661152251905/9338aaca" alt="Giraffe #6759" style="display: block; margin-left: auto margin-right: auto; width: 50%;">
-</a>
-</center>
+<h1 style="color: #57A">Garage Kit </h1>
 
-## [0xMonkey](http://0xmonkey.xyz/)
-[@jaxonly.bit](https://twitter.com/yihaoxu1998) and [@0xMonkey](https://twitter.com/0xmonkey2022),this is a very interesting project which in my opinion is just copying project [Monkey Kingdom](https://monkeykingdom.io/), but it is something fun here.
-You can generate the 0xMonkey by this opensource website:[开源头像拼图](https://0xmonkey.fullstack.run/916e686-0-e14fcc8e-8a5cd8a4-44857bff-26b5f466-9bb10ce1-0)
+Fan of anime, watns to collect them in hand.
 
-Here's some example:
+## Nezuko Kamado
 
-<div class="gallery">
-    <img src="/assets/img/digit_artwork/0xMonkey_0.png" class="gallery-image" alt="0xMonkey_0">
-    <img src="/assets/img/digit_artwork/0xMonkey_1.png" class="gallery-image" alt="0xMonkey_1">
-    <img src="/assets/img/digit_artwork/0xMonkey_2.png" class="gallery-image" alt="0xMonkey_2">
-    <img src="/assets/img/digit_artwork/0xMonkey_3.png" class="gallery-image" alt="0xMonkey_3">
-    <img src="/assets/img/digit_artwork/0xMonkey_4.png" class="gallery-image" alt="0xMonkey_4">
-    <img src="/assets/img/digit_artwork/0xMonkey_5.png" class="gallery-image" alt="0xMonkey_5">
-    <img src="/assets/img/digit_artwork/0xMonkey_6.png" class="gallery-image" alt="0xMonkey_6">
-    <img src="/assets/img/digit_artwork/0xMonkey_7.png" class="gallery-image" alt="0xMonkey_7">
-    <img src="/assets/img/digit_artwork/0xMonkey_8.png" class="gallery-image" alt="0xMonkey_8">
-    <img src="/assets/img/digit_artwork/0xMonkey_9.png" class="gallery-image" alt="0xMonkey_9">
-    <img src="/assets/img/digit_artwork/0xMonkey_10.png" class="gallery-image" alt="0xMonkey_10">
-    <img src="/assets/img/digit_artwork/0xMonkey_11.png" class="gallery-image" alt="0xMonkey_11">
+This is my first garage kit in my life, in year 2 of college.
+
+<div class="big-gallery">
+    <img src="/assets/img/garage_kit/nezuko_kamado/nezuko_kamado1.jpg" alt="Nezuko Kamado" class="big-gallery-image">
+    <img src="/assets/img/garage_kit/nezuko_kamado/nezuko_kamado2.jpg" alt="Nezuko Kamado" class="big-gallery-image">
 </div>
 

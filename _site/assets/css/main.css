@@ -160,14 +160,36 @@
     text-align: center;
   }
 
-  .gallery {
+  .small-gallery {
     display: grid;
     grid-template-columns: repeat(4, 200px);
     grid-gap: 15px;
+    align-content: center;
   }
 
-  .gallery-image {
+  .small-gallery-image {
     width: 200px;
+  }
+
+  .big-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 400px);
+    grid-gap: 15px;
+    align-content: center;
+  }
+
+  .big-gallery-image {
+    width: 400px;
+  }
+
+  figcaption {
+    font-style: italic;
+    padding: 2px;
+    text-align: center;
+  }
+
+  .row {
+    display: flex;
   }
 
 /* =Page navigation *//*************************************************************/
@@ -245,13 +267,22 @@
       text-align: center;
       width: 100%; }
 
-    .gallery {
+    .small-gallery {
       grid-template-columns: repeat(3, 100px);
     }
 
-    .gallery-image {
+    .small-gallery-image {
       width: 100px;
     }
+
+    .big-gallery {
+      grid-template-columns: repeat(2, 150px);
+    }
+  
+    .big-gallery-image {
+      width: 150px;
+    }
+
 
   }
 
