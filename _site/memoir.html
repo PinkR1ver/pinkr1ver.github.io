@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,17 +9,40 @@
     <link rel="stylesheet" href="/assets/css/memoir.css">
   </head>
 <body>
-    <header>
-        <h1>Hey,</h1>
-        <p>
-            Yichong is undergraduating from ZJU recent days,
-            <br>
-            if you have some words want to say to him, you can leave message below
-            <br>
-            He will reply you with pleasure
-        </p>
-    </header>
     <main>
+        <section>
+            <div class="intro">
+                <h1>Hey,</h1>
+                <p>
+                    Yichong is undergraduating from ZJU recent days,
+                    <br>
+                    if you have some words want to say to him, you can leave message below
+                    <br>
+                    He will reply you with pleasure
+                </p>
+            </div>
 
+            <br>
+
+            <div class="container">
+                <form action="https://formsubmit.co/pinkr1veroops@gmail.com" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea name="message" id="message" rows="10"></textarea>
+                    </div>
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+        </section>
     </main>
 </body>
