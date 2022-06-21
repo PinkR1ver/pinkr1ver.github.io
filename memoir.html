@@ -47,21 +47,21 @@
 
                 <script>
 
-                    const form = document.querySelector('.contact_form'),
+                    const form = document.querySelector('.contact_form');
 
                     function sendMsg(e){
                         e.preventDefault();
 
-                        const name = document.querySelector('.name'),
-                              email = document.querySelector('.email'),
-                              msg = document.querySelector('.msg');
+                        var name = document.querySelector('.name'),
+                            email = document.querySelector('.email'),
+                            msg = document.querySelector('.msg');
 
                         Email.send({
-                            SecureToken : "d8b5d95d-3306-495f-a002-8e2fd918444b",
+                            SecureToken : "5cb03034-1f33-4f76-b7eb-590ef0beebd2",
                             To : 'pinkr1veroops@gmail.com',
-                            From : email.vaule,
+                            From : 'pinkr1veroops@gmail.com',
                             Subject : "Somebody send your graudation words",
-                            Body : msg.vaule
+                            Body : name.value + '\n\n' + email.value + '\n\n' + msg.value
                         }).then(
                             message => alert(message)
                         );
