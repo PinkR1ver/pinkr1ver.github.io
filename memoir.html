@@ -56,6 +56,14 @@
                             email = document.querySelector('.email'),
                             msg = document.querySelector('.msg');
 
+                        if (name.value === "") {
+                            name.value = "Anonymous"
+                        }
+                        
+                        if (email.value === "") {
+                            email.value = "Anonymous";
+                        }
+
                         Email.send({
                             SecureToken : "5cb03034-1f33-4f76-b7eb-590ef0beebd2",
                             To : 'pinkr1veroops@gmail.com',
