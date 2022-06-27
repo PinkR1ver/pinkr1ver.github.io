@@ -1,4 +1,4 @@
-I" <h1 style="color: #57A">Digit ArtWork</h1>
+I"I<h1 style="color: #57A">Digit ArtWork</h1>
 
 <p>I think NFT is a great way to prove the digit artwork’s information. So some of my digit artwork will be stored in NFT format. Here’s my:</p>
 
@@ -36,13 +36,18 @@
 
 <p>Fan of anime, watns to collect them in hand.</p>
 
-<h2 id="nezuko-kamado">Nezuko Kamado</h2>
-
-<p>This is my first garage kit in my life, in year 2 of college.</p>
+<h3 id="竈門-禰󠄀豆子-nezuko-kamado">竈門 禰󠄀豆子, Nezuko Kamado</h3>
 
 <div class="big-gallery">
     <img src="/assets/img/garage_kit/nezuko_kamado/nezuko_kamado1.jpg" alt="Nezuko Kamado" class="big-gallery-image" />
     <img src="/assets/img/garage_kit/nezuko_kamado/nezuko_kamado2.jpg" alt="Nezuko Kamado" class="big-gallery-image" />
+</div>
+
+<h3 id="平沢-憂-hirasawa-ui">平沢 憂, Hirasawa Ui</h3>
+
+<div class="big-gallery">
+    <img src="/assets/img/garage_kit/hirasawa_ui/hirasawa_ui1.jpg" alt="Hirasawa Ui" class="big-gallery-image" />
+    <img src="/assets/img/garage_kit/hirasawa_ui/hirasawa_ui2.jpg" alt="Hirasawa Ui" class="big-gallery-image" />
 </div>
 
 :ET
