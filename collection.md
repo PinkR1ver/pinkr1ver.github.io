@@ -43,14 +43,14 @@ Public Address: **0x27B3682843b5E0a1D113824d69ED62eDdFeE8d01**
 
 Fan of anime, watns to collect them in hand.
 
-### 竈門 禰󠄀豆子, Nezuko Kamado
+### 竈門 禰󠄀豆子, *Nezuko Kamado*
 
 <div class="big-gallery">
     <img src="/assets/img/garage_kit/nezuko_kamado/nezuko_kamado1.jpg" alt="Nezuko Kamado" class="big-gallery-image">
     <img src="/assets/img/garage_kit/nezuko_kamado/nezuko_kamado2.jpg" alt="Nezuko Kamado" class="big-gallery-image">
 </div>
 
-### 平沢 憂, Hirasawa Ui
+### 平沢 憂, *Hirasawa Ui*
 
 <div class="big-gallery">
     <img src="/assets/img/garage_kit/hirasawa_ui/hirasawa_ui1.jpg" alt="Hirasawa Ui" class="big-gallery-image">
