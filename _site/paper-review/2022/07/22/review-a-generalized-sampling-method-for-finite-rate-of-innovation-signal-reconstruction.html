@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title> Review:A Generalized Sampling Method for Finite-Rate-of-Innovation-Signal Reconstruction — Sampling signals that are not admissible within the classical Shannon framework  | PinkR1ver Studio</title>
+<meta name="description" content="Sampling signals that are not admissible within the classical Shannon framework">
+<meta name="keywords" content="Signal, M.sc">
+<link rel="canonical" href="/paper-review/2022/07/22/review-a-generalized-sampling-method-for-finite-rate-of-innovation-signal-reconstruction.html">
+<link rel="icon" type="image/jpeg" href="/assets/img/pinkr1ver.png"/>
+<link rel="stylesheet" href="/assets/vendor/normalize-css/normalize.css">
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<link rel="stylesheet" href="/assets/vendor/highlight/styles/agate.css">
+
+<link rel="stylesheet" href="/assets/vendor/font-awesome/css/font-awesome.css">
+<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+</head>
+<body>
+<div class="wrapper">
+<header class="header">
+<div class="navigation">
+<a href="/" class="logo">PinkR1ver Studio</a>
+<ul class="menu">
+<li class="menu__entry"><a href="/resume">Resume</a></li>
+<li class="menu__entry"><a href="/blog">Blog</a></li>
+<li class="menu__entry"><a href="/collection">Collection</a></li>
+<li class="menu__entry"><a href="https://pinkr1ver.notion.site/3cfdd332b9a94b20bca041f2aa2bdcd2?v=24e696e6ab754386a710bc8e83976357" target="_blank">Photo Gallery</a></li>
+<li class="menu__entry"><a href="https://pinkr1ver.notion.site/5e136466f3664ff1aaaa75b85446e5b4?v=a41efbce52a84f7aa89d8f649f4620f6" target="_blank">Watching List</a></li>
+</ul>
+</div>
+<ul class="social-links">
+
+<a href="mailto:pinkr1veroops@gmail.com" class="social-links__entry" target="_blank">
+<i class="fa fa-envelope-square"></i>
+</a>
+
+
+<a href="https://github.com/PinkR1ver" class="social-links__entry" target="_blank">
+<i class="fa fa-github"></i>
+</a>
+
+
+
+<a href="https://twitter.com/PinkR1ver" class="social-links__entry" target="_blank">
+<i class="fa fa-twitter"></i>
+</a>
+
+
+<a href="feed.xml" class="social-links__entry" target="_blank">
+<i class="fa fa-rss"></i>
+</a>
+
+</ul>
+</header>
+<h1 class="page-title">
+<div class="page-title__text">Review:A Generalized Sampling Method for Finite-Rate-of-Innovation-Signal Reconstruction</div>
+<div class="page-title__subtitle">Sampling signals that are not admissible within the classical Shannon framework</div>
+</h1>
+
+
+<h2 id="article-address">Article Address:</h2>
+<p style="text-indent: 2em;"><a href="https://ieeexplore.ieee.org/document/4682542">https://ieeexplore.ieee.org/document/4682542</a></p>
+
+<h2 id="background">Background</h2>
+<p style="text-indent: 2em;">采样和重构无法在香农采样理论的经典框架内处理的信号,此类信号的示例包括狄拉克脉冲流和各种类型的非均匀样条，例如分段多项式、分段指数和分段谐波函数。这些信号由一组离散的参数（例如，奇点的幅度和位置）唯一指定，因此具有具有有限新率（FRI）</p>
+
+<h2 id="from-dirac-impulse-to-kronecker-impulse">From Dirac Impulse to Kronecker Impulse</h2>
+<p style="text-indent: 2em;"><img src="/assets/img/2022-07-22-review-a-generalized-sampling-method-for-finite-rate-of-innovation-signal-reconstruction/fig2.png" alt="From Dirac impulses to Kronecker impulses" /></p>
+
+<p style="text-indent: 2em;">需要理解的地方就在于(4)的$p_a(nT)$,它是由一个叫做discrete-time finite-impulse-response
+filter specified by the Z-transform:\(G_a(z)=\frac{1}{a}(1-e^{-aT}z^{-T})\)的filter处理后得到的。当 (3) 中的序列由 G(z) 处理时，它会产生克罗内克脉冲流，也就是(4)</p>
+
+<p style="text-indent: 2em;">Kronecker Impulse的幅度是Dirac Impulse的幅度和位置的可分函数</p>
+
+<h2 id="two-channel-sampling-of-a-dirac-impulse-train">Two Channel sampling of a dirac impulse train</h2>
+
+<p style="text-indent: 2em;">Kronecker Impulse的幅度是Dirac Impulse的幅度和位置的可分函数，这一特性可以给我们一种简单而有效的重建技术。</p>
+
+<p style="text-indent: 2em;">具体细节上，我们通过不同的采样内核获得另一组测量值，如下图：
+<img src="/assets/img/2022-07-22-review-a-generalized-sampling-method-for-finite-rate-of-innovation-signal-reconstruction/fig3.png" alt="Two-channel sampling of a stream of Dirac impulses by using first-order RC networks." /></p>
+
+<p style="text-indent: 2em;">然后可以通过\(p_a(nT)\)和\(p_\gamma(nT)\)建立等式计算原信号，具体见论文</p>
+
+<h2 id="spline-equivalence-and-effects">Spline Equivalence and Effects</h2>
+<p style="text-indent: 2em;">对于E样条(E-spline )采样（不确定Spline Equivalence的准确定义）与Dirac相似，通过多通道采样和不同的采样核重建信号，效果如下：</p>
+
+<p style="text-indent: 2em;"><img src="/assets/img/2022-07-22-review-a-generalized-sampling-method-for-finite-rate-of-innovation-signal-reconstruction/fig4.png" alt="Ground truth and Reconstruction" /></p>
+
+<h2 id="conclusion">Conclusion</h2>
+<p style="text-indent: 2em;">总而言之，本篇论文提出了一种双通道采样方法来使用简单的计算来检索脉冲的参数来解决了采样和重建狄拉克脉冲流的典型问题。原则上，该技术适用于无限长的脉冲序列，而无需逐块处理。</p>
+
+<p style="text-indent: 2em;">这种方法和之前传统方法的比较如下图：
+<img src="/assets/img/2022-07-22-review-a-generalized-sampling-method-for-finite-rate-of-innovation-signal-reconstruction/table.png" alt="COMPARISON OF THE STANDARD AND THE PROPOSED APPROACHES" /></p>
+
+
+
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		// Don't ever inject Disqus on localhost--it creates unwanted
+		// discussions from 'localhost:1313' on your Disqus account...
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'pinkr1ver';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</div>
+<script src="/assets/vendor/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
