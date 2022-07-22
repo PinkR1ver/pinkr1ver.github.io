@@ -20,7 +20,7 @@ description: Sampling signals that are not admissible within the classical Shann
 ## From Dirac Impulse to Kronecker Impulse
 ![From Dirac impulses to Kronecker impulses](/assets/img/2022-07-22-review-a-generalized-sampling-method-for-finite-rate-of-innovation-signal-reconstruction/fig2.png)
 
-需要理解的地方就在于(4)的$p_a(nT)$,它是由一个叫做discrete-time finite-impulse-response
+需要理解的地方就在于(4)的$$p_a(nT)$$,它是由一个叫做discrete-time finite-impulse-response
 filter specified by the Z-transform:$$G_a(z)=\frac{1}{a}(1-e^{-aT}z^{-T})$$的filter处理后得到的。当 (3) 中的序列由 G(z) 处理时，它会产生克罗内克脉冲流，也就是(4)
 
 Kronecker Impulse的幅度是Dirac Impulse的幅度和位置的可分函数

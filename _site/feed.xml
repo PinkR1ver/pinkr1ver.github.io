@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://pinkr1ver.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://pinkr1ver.com/" rel="alternate" type="text/html" /><updated>2022-07-22T23:43:41+08:00</updated><id>https://pinkr1ver.com/feed.xml</id><title type="html">PinkR1ver Studio</title><subtitle>Jude Wang&apos;s Blog
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://pinkr1ver.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://pinkr1ver.com/" rel="alternate" type="text/html" /><updated>2022-07-22T23:53:42+08:00</updated><id>https://pinkr1ver.com/feed.xml</id><title type="html">PinkR1ver Studio</title><subtitle>Jude Wang&apos;s Blog
 </subtitle><author><name>{&quot;fullname&quot;=&gt;&quot;Jude Wang&quot;, &quot;github&quot;=&gt;&quot;PinkR1ver&quot;, &quot;email&quot;=&gt;&quot;pinkr1veroops@gmail.com&quot;, &quot;twitter&quot;=&gt;&quot;PinkR1ver&quot;}</name><email>pinkr1veroops@gmail.com</email></author><entry><title type="html">Review:A Generalized Sampling Method for Finite-Rate-of-Innovation-Signal Reconstruction</title><link href="https://pinkr1ver.com/paper-review/2022/07/22/review-a-generalized-sampling-method-for-finite-rate-of-innovation-signal-reconstruction.html" rel="alternate" type="text/html" title="Review:A Generalized Sampling Method for Finite-Rate-of-Innovation-Signal Reconstruction" /><published>2022-07-22T23:36:00+08:00</published><updated>2022-07-22T23:36:00+08:00</updated><id>https://pinkr1ver.com/paper-review/2022/07/22/review-a-generalized-sampling-method-for-finite-rate-of-innovation-signal-reconstruction</id><content type="html" xml:base="https://pinkr1ver.com/paper-review/2022/07/22/review-a-generalized-sampling-method-for-finite-rate-of-innovation-signal-reconstruction.html"><![CDATA[<h2 id="article-address">Article Address:</h2>
 <p><a href="https://ieeexplore.ieee.org/document/4682542">https://ieeexplore.ieee.org/document/4682542</a></p>
 
@@ -8,7 +8,7 @@
 <h2 id="from-dirac-impulse-to-kronecker-impulse">From Dirac Impulse to Kronecker Impulse</h2>
 <p><img src="/assets/img/2022-07-22-review-a-generalized-sampling-method-for-finite-rate-of-innovation-signal-reconstruction/fig2.png" alt="From Dirac impulses to Kronecker impulses" /></p>
 
-<p>需要理解的地方就在于(4)的$p_a(nT)$,它是由一个叫做discrete-time finite-impulse-response
+<p>需要理解的地方就在于(4)的\(p_a(nT)\),它是由一个叫做discrete-time finite-impulse-response
 filter specified by the Z-transform:\(G_a(z)=\frac{1}{a}(1-e^{-aT}z^{-T})\)的filter处理后得到的。当 (3) 中的序列由 G(z) 处理时，它会产生克罗内克脉冲流，也就是(4)</p>
 
 <p>Kronecker Impulse的幅度是Dirac Impulse的幅度和位置的可分函数</p>
