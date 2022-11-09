@@ -1,15 +1,17 @@
 ---
 layout: page
 title: Hello
-subtitle: 🍺
+subtitle: 脚踩西瓜皮，滑到哪里是哪里🍉
 sitemap:
   priority: 0.9
 ---
  
 <h1> <font style="font-weight: 500, bold; font-style: italic; font-size: 1.2em;">there's Jude  </font> </h1>
 <p style="font-size: 1.5em">
-	Step on the watermelon rind to slide, enjoy any place I arrive🍉 <br>
-	踩着西瓜皮，滑到哪里是哪里🍉 	<br>
+	In the progess to get M.sc in ZJU(Zhejiang University), top 3 in China🐶. Majored in BME and now the research direction is FRI sampling reconstruction in UWB signal. 🕵️‍♂️ 	
+</p>
+<p style="font-size: 1.5em">
+	Recently: Think math is the most important tool for everything, re-learn math recently. Additionly, be obsessed with cycling 🦼 
 </p>
 <p>
 	<div class="row" align="center">
