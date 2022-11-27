@@ -16,6 +16,6 @@ sitemap:
 <p>
 	<div class="row" align="center">
 	<img src="https://raw.githubusercontent.com/PinkR1ver/ImageHosting/90fc7de607087218ec32dba6a0205517343f7678/Home/pinkr1ver.svg" alt="PinkR1ver Studio" align="left" width="auto" height="300">
-	<img src="https://github.com/PinkR1ver/ImageHosting/blob/main/Home/Maoqiu.jpg?raw=true" alt="Maoqiu"  width="auto" height="300">
+	<img src="https://github.com/PinkR1ver/ImageHosting/blob/main/Home/Maoqiu.jpg?raw=true" alt="Maoqiu"  width="auto" height="300" style="border-radius: 25px;">
 	</div>
 </p>
