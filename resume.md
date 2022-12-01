@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Résumé
-subtitle: A 😅 Guy
+subtitle: 🍉
 ---
 
 <!--
