@@ -33,51 +33,6 @@
   
     
     <url>
-      <loc>https://pinkr1ver.com/thinking/2022/05/19/%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%9A%94%E7%A6%BB%E9%85%92%E5%BA%97%E7%9A%84%E5%B0%8F%E6%91%A9%E6%93%A6.html/</loc>
-      
-        <lastmod>2022-05-19T00:34:00+08:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.7</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>https://pinkr1ver.com/thinking/2022/05/14/%E5%90%8C%E6%B8%A9%E5%B1%82%E4%BA%92%E5%AE%B3%E4%B8%8E%E5%85%AC%E6%9D%83%E5%8A%9B%E6%81%90%E6%83%A7.html/</loc>
-      
-        <lastmod>2022-05-14T14:59:00+08:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.7</priority>
-      
-    </url>
-    
-  
-    
-    <url>
-      <loc>https://pinkr1ver.com/thinking/2022/05/01/bubble-and-zoom.html/</loc>
-      
-        <lastmod>2022-05-01T02:00:00+08:00</lastmod>
-      
-      
-        <changefreq>monthly</changefreq>
-      
-      
-        <priority>0.7</priority>
-      
-    </url>
-    
-  
-    
-    <url>
       <loc>https://pinkr1ver.com/thinking/2022/04/27/%E7%A4%BC%E8%B2%8C%E5%AF%B9%E5%BE%85%E4%BB%96%E4%BA%BA%E7%9A%84%E8%AF%A2%E9%97%AE-%E4%BB%A5%E7%BB%84%E7%BB%87%E6%9E%B6%E6%9E%84%E4%B8%AD%E7%9A%84%E9%80%9A%E7%9F%A5%E4%BA%BA%E5%91%98%E4%B8%BA%E4%BE%8B.html/</loc>
       
         <lastmod>2022-04-27T15:01:00+08:00</lastmod>
@@ -198,12 +153,57 @@
   
   
     
+    <url>
+      <loc>https://pinkr1ver.com/history/2022-05-01-bubble-and-zoom.html</loc>
+      
+        <lastmod>2022-05-01T02:00:00+08:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>https://pinkr1ver.com/history/2022-05-14-%E5%90%8C%E6%B8%A9%E5%B1%82%E4%BA%92%E5%AE%B3%E4%B8%8E%E5%85%AC%E6%9D%83%E5%8A%9B%E6%81%90%E6%83%A7.html</loc>
+      
+        <lastmod>2022-05-14T14:59:00+08:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
+    <url>
+      <loc>https://pinkr1ver.com/history/2022-05-19-%E8%AE%B0%E4%B8%80%E6%AC%A1%E9%9A%94%E7%A6%BB%E9%85%92%E5%BA%97%E7%9A%84%E5%B0%8F%E6%91%A9%E6%93%A6.html</loc>
+      
+        <lastmod>2022-05-19T00:34:00+08:00</lastmod>
+      
+      
+        <changefreq>monthly</changefreq>
+      
+      
+        <priority>0.5</priority>
+      
+    </url>
+    
+  
+    
   
     
     <url>
       <loc>https://pinkr1ver.com/blog.html</loc>
       
-        <lastmod>2022-11-27T17:18:47+08:00</lastmod>
+        <lastmod>2022-12-01T13:23:12+08:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -218,7 +218,7 @@
     <url>
       <loc>https://pinkr1ver.com/collection.html</loc>
       
-        <lastmod>2022-11-27T17:18:47+08:00</lastmod>
+        <lastmod>2022-12-01T13:23:12+08:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -248,7 +248,7 @@
     <url>
       <loc>https://pinkr1ver.com/</loc>
       
-        <lastmod>2022-11-27T17:18:47+08:00</lastmod>
+        <lastmod>2022-12-01T13:23:12+08:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -263,7 +263,7 @@
     <url>
       <loc>https://pinkr1ver.com/memory.html</loc>
       
-        <lastmod>2022-11-27T17:18:47+08:00</lastmod>
+        <lastmod>2022-12-01T13:23:12+08:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -278,7 +278,7 @@
     <url>
       <loc>https://pinkr1ver.com/resume.html</loc>
       
-        <lastmod>2022-11-27T17:18:47+08:00</lastmod>
+        <lastmod>2022-12-01T13:23:12+08:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
@@ -297,7 +297,7 @@
     <url>
       <loc>https://pinkr1ver.com/feed.xml</loc>
       
-        <lastmod>2022-11-27T17:18:47+08:00</lastmod>
+        <lastmod>2022-12-01T13:23:12+08:00</lastmod>
       
       
         <changefreq>monthly</changefreq>
