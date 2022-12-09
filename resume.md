@@ -22,7 +22,7 @@ subtitle: 🍉
 [**Exchange to National University of Singapore (NUS)**](assets/pdf/NUS_Transcript.pdf) <span style="float: right; ">2021-2022</span> <br>
 *Final Year Project* &nbsp;instructed by [Dan wu](https://person.zju.edu.cn/en/danwu) and [Zhiwei Huang](https://cde.nus.edu.sg/bme/staff/dr-huang-zhiwei/)
 
-**Zhejiang University (ZJU)**,&nbsp;&nbsp;Zhejiang,&nbsp;&nbsp;China <span style="float: right; ">Upcoming...</span> <br>
+**Zhejiang University (ZJU)**,&nbsp;&nbsp;Zhejiang,&nbsp;&nbsp;China <span style="float: right; ">Now</span> <br>
 *M.Sc.* Major in Biomedical Engineering (BME)
 
 ## 🤹🏽 Skills
