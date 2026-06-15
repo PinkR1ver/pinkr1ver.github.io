@@ -83,28 +83,32 @@
           yaw label remains unchanged.
         </p>
       </div>
-      <svg class="method-diagram" viewBox="0 0 560 260" role="img" aria-label="camera-up transform diagram">
+      
+      <svg class="method-diagram" viewBox="0 0 560 260" role="img" aria-label="affine transform diagram">
         <defs>
           <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
             <path d="M0,0 L8,4 L0,8 Z" fill="#2563eb"></path>
           </marker>
         </defs>
         <rect x="24" y="44" width="190" height="132" rx="6" fill="#f8fafc" stroke="#94a3b8"/>
-        <rect x="346" y="44" width="190" height="132" rx="6" fill="#f8fafc" stroke="#94a3b8"/>
         <ellipse cx="119" cy="110" rx="76" ry="31" fill="#e2e8f0" stroke="#64748b"/>
         <circle cx="119" cy="110" r="22" fill="#4b6470"/>
         <circle cx="119" cy="110" r="9" fill="#111827"/>
-        <ellipse cx="441" cy="113" rx="70" ry="26" fill="#e2e8f0" stroke="#64748b"/>
-        <circle cx="441" cy="116" r="21" fill="#4b6470"/>
-        <circle cx="441" cy="116" r="9" fill="#111827"/>
         <path d="M232 110 C265 80, 300 80, 332 110" fill="none" stroke="#2563eb" stroke-width="3" marker-end="url(#arrow)"/>
-        <path d="M398 64 L484 64 M392 84 L490 84 M386 104 L496 104" stroke="#dc2626" stroke-width="2" opacity="0.8"/>
-        <path d="M405 151 L478 151" stroke="#16a34a" stroke-width="3"/>
+        
+        <polygon points="362,52 524,40 502,176 340,188" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+        <ellipse cx="432" cy="112" rx="62" ry="24" transform="rotate(-4 432 112)" fill="#e2e8f0" stroke="#64748b"/>
+        <circle cx="432" cy="112" r="21" fill="#4b6470"/>
+        <circle cx="432" cy="112" r="9" fill="#111827"/>
+        <path d="M382 70 L494 62 M376 92 L488 84 M370 114 L482 106 M364 136 L476 128" stroke="#dc2626" stroke-width="2" opacity="0.85"/>
+        <path d="M384 65 L358 164 M436 59 L410 158 M488 53 L462 152" stroke="#16a34a" stroke-width="2.4" opacity="0.85"/>
+        <text x="441" y="204" text-anchor="middle" class="axis-label">affine shear/scale: parallel lines remain parallel</text>
+        
         <text x="119" y="28" text-anchor="middle" class="axis-label">original patch</text>
         <text x="441" y="28" text-anchor="middle" class="axis-label">affine transformed patch</text>
         <text x="280" y="148" text-anchor="middle" class="axis-label">inverse-map pixels with bilinear sampling</text>
-        <text x="441" y="204" text-anchor="middle" class="axis-label">camera-location perturbation with unchanged yaw label</text>
       </svg>
+    
     </section>
     
     <section class="summary">
