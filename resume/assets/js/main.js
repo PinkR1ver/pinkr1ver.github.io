@@ -74,10 +74,47 @@
   
   // Spotlight: 鼠标位置驱动的径向渐变灯光
   var spotlight = document.getElementById('spotlight');
+  var fluidField = document.querySelector('.fluid-field');
+  var fluidBlobs = $$('.fluid-blob');
+  var avatarOrb = document.querySelector('.avatar-orb');
+  var motionQuery = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+  var motionAllowed = !(motionQuery && motionQuery.matches);
+  var pointer = { x: window.innerWidth * 0.72, y: window.innerHeight * 0.22 };
+  var smoothPointer = { x: pointer.x, y: pointer.y };
+
+  function updateFluidScene() {
+    if (!motionAllowed) return;
+    var w = window.innerWidth || 1;
+    var h = window.innerHeight || 1;
+    smoothPointer.x += (pointer.x - smoothPointer.x) * 0.055;
+    smoothPointer.y += (pointer.y - smoothPointer.y) * 0.055;
+    var nx = (smoothPointer.x / w) - 0.5;
+    var ny = (smoothPointer.y / h) - 0.5;
+    var scrollTop = window.pageYOffset || document.documentElement.scrollTop || 0;
+    var wave = Math.sin(scrollTop * 0.002 + nx * 3.8);
+
+    if (fluidField) {
+      fluidField.style.setProperty('--blob-x', (nx * 42 + wave * 10).toFixed(2) + 'px');
+      fluidField.style.setProperty('--blob-y', (ny * 34 - wave * 8).toFixed(2) + 'px');
+      fluidField.style.setProperty('--blob-rot', (nx * 8 + ny * 6).toFixed(2) + 'deg');
+    }
+    if (avatarOrb) {
+      avatarOrb.style.setProperty('--fluid-x', (nx * 8).toFixed(2) + 'px');
+      avatarOrb.style.setProperty('--fluid-y', (ny * 6).toFixed(2) + 'px');
+    }
+    document.documentElement.style.setProperty('--section-flow-x', (wave * 2.4).toFixed(2) + 'px');
+  }
+
+  function setPointer(x, y) {
+    pointer.x = x;
+    pointer.y = y;
+  }
+
   if (spotlight) {
     var moveSpotlight = function(x, y) {
       // 将径向渐变中心移动到鼠标位置
       spotlight.style.background = 'radial-gradient(600px at ' + x + 'px ' + y + 'px, rgba(29, 78, 216, 0.15), transparent 80%)';
+      setPointer(x, y);
     };
     window.addEventListener('mousemove', function(e){
       moveSpotlight(e.clientX, e.clientY);
@@ -88,6 +125,22 @@
         moveSpotlight(e.touches[0].clientX, e.touches[0].clientY);
       }
     }, { passive: true });
+  }
+
+  if (fluidBlobs.length && motionAllowed) {
+    var fluidTicking = false;
+    var requestFluidUpdate = function () {
+      if (!fluidTicking) {
+        window.requestAnimationFrame(function () {
+          updateFluidScene();
+          fluidTicking = false;
+        });
+        fluidTicking = true;
+      }
+    };
+    window.addEventListener('scroll', requestFluidUpdate, { passive: true });
+    window.addEventListener('resize', requestFluidUpdate);
+    requestFluidUpdate();
   }
   
   // Scrollspy for sidebar
@@ -179,5 +232,4 @@
 
   // Tag pills: 使用更中性的配色与简洁 hover（无光晕）
 })();
-
 

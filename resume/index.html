@@ -22,10 +22,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/resume/assets/css/main.css?v=1782364759" />
+    <link rel="stylesheet" href="/resume/assets/css/main.css?v=1782367441" />
   </head>
   <body>
     <div id="spotlight" aria-hidden="true"></div>
+    <div class="fluid-field" aria-hidden="true">
+      <span class="fluid-blob fluid-blob-a"></span>
+      <span class="fluid-blob fluid-blob-b"></span>
+      <span class="fluid-blob fluid-blob-c"></span>
+    </div>
     <div id="scroll-progress"></div>
     <div class="container layout-two-col" data-layout="default">
       <aside class="sidebar">
@@ -33,9 +38,20 @@
           
           <div class="sidebar-inner">
             <div class="author-card">
+              
+              <figure class="avatar-orb reveal" style="--reveal-index: 0;">
+                <img src="/resume/assets/img/avatar/jude-camera-grid.jpg" alt="Jude Wang portrait" />
+              </figure>
+              
               <h1 class="name">Jude Wang</h1>
               <p class="title">Research Assistant</p>
               <p class="tagline">Researcher portfolio for PhD applications: projects, publications, education, and about.</p>
+              
+              <a class="cv-link" href="/resume/assets/pdf/yichong-wang-cv.pdf" target="_blank" rel="noopener">
+                <span>View Academic CV</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+              
             </div>
             <nav class="side-nav" aria-label="Section navigation">
               <div class="side-indicator" aria-hidden="true"></div>
@@ -85,7 +101,14 @@
         
       </aside>
       <main class="content">
-        <section id="about" class="measure" data-template="about"><p>I’m a software engineer focused on building delightful, accessible web experiences. I care about performance, thoughtful motion, and creating interfaces that feel alive without getting in your way.</p>
+        
+<section id="about" class="measure" data-template="about">
+  
+  <p class="cv-inline-cta reveal">
+    <span>Formal academic version:</span>
+    <a href="/resume/assets/pdf/yichong-wang-cv.pdf" target="_blank" rel="noopener">view CV PDF</a>
+  </p>
+  <p>I’m a software engineer focused on building delightful, accessible web experiences. I care about performance, thoughtful motion, and creating interfaces that feel alive without getting in your way.</p>
 
 <p>Recently, I’ve been exploring design systems, component accessibility, and scalable frontend architectures.</p>
 
@@ -162,8 +185,7 @@
     </footer>
     
     <button id="back-to-top" aria-label="Back to top">↑</button>
-    <script src="/resume/assets/js/main.js?v=1782364759" defer></script>
+    <script src="/resume/assets/js/main.js?v=1782367441" defer></script>
   </body>
   </html>
-
 
