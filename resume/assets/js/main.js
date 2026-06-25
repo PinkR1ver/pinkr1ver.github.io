@@ -77,6 +77,7 @@
   var fluidField = document.querySelector('.fluid-field');
   var fluidBlobs = $$('.fluid-blob');
   var avatarOrb = document.querySelector('.avatar-orb');
+  var aboutProvenance = document.querySelector('.about-provenance');
   var motionQuery = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
   var motionAllowed = !(motionQuery && motionQuery.matches);
   var pointer = { x: window.innerWidth * 0.72, y: window.innerHeight * 0.22 };
@@ -108,6 +109,13 @@
   function setPointer(x, y) {
     pointer.x = x;
     pointer.y = y;
+    if (aboutProvenance && motionAllowed) {
+      var rect = aboutProvenance.getBoundingClientRect();
+      if (y >= rect.top - 120 && y <= rect.bottom + 120) {
+        var px = rect.width ? Math.max(0, Math.min(100, ((x - rect.left) / rect.width) * 100)) : 16;
+        aboutProvenance.style.setProperty('--provenance-x', px.toFixed(1) + '%');
+      }
+    }
   }
 
   if (spotlight) {
@@ -232,4 +240,3 @@
 
   // Tag pills: 使用更中性的配色与简洁 hover（无光晕）
 })();
-

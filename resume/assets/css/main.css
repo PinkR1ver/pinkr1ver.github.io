@@ -302,9 +302,192 @@ section {
 .caps { text-transform: uppercase; letter-spacing: .14em; }
 .eyebrow { display: inline-block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: .16em; color: var(--muted); }
 
-/* About section: 默认文字半透明，仅加粗文字不透明 */
+/* About: AI-native research portrait */
+.about-copy {
+  position: relative;
+}
+.about-copy::before {
+  content: "";
+  position: absolute;
+  left: -28px;
+  top: 10px;
+  width: 1px;
+  height: calc(100% - 18px);
+  background:
+    linear-gradient(
+      180deg,
+      transparent,
+      rgba(94, 234, 212, .52) 18%,
+      rgba(96, 165, 250, .36) 58%,
+      transparent
+    );
+  opacity: .58;
+  transform-origin: top;
+  animation: about-axis-pulse 7s ease-in-out infinite;
+}
+.about-line {
+  position: relative;
+  margin: 0 0 22px;
+  line-height: 1.82;
+  color: color-mix(in oklab, var(--fg) 66%, transparent) !important;
+}
+.about-line.reveal {
+  filter: blur(2px);
+}
+.about-line.reveal.is-revealed {
+  filter: blur(0);
+}
+.about-line::before {
+  content: "";
+  position: absolute;
+  left: -32px;
+  top: .88em;
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(94, 234, 212, .42);
+  background: rgba(15, 23, 42, .64);
+  box-shadow: 0 0 18px rgba(94, 234, 212, .18);
+  transform: scale(.72);
+  transition: transform .7s cubic-bezier(.16,1,.3,1), box-shadow .7s ease, border-color .7s ease;
+}
+.about-line.is-revealed::before {
+  transform: scale(1);
+  border-color: rgba(94, 234, 212, .78);
+  box-shadow: 0 0 28px rgba(94, 234, 212, .3);
+}
+.about-signal {
+  position: relative;
+  display: inline;
+  color: color-mix(in oklab, var(--fg) 90%, #5eead4 10%) !important;
+  font-weight: 780;
+  text-shadow: 0 0 18px rgba(94, 234, 212, .1);
+}
+.about-signal::after {
+  content: "";
+  position: absolute;
+  left: -.08em;
+  right: -.08em;
+  bottom: .05em;
+  height: .42em;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(94, 234, 212, .18), rgba(96, 165, 250, .1), rgba(251, 146, 60, .12));
+  z-index: -1;
+  transform-origin: left center;
+  transform: scaleX(.18);
+  opacity: .72;
+  transition: transform .8s cubic-bezier(.16,1,.3,1), opacity .5s ease;
+}
+.about-line.is-revealed .about-signal::after {
+  transform: scaleX(1);
+}
+
+.about-provenance {
+  position: relative;
+  isolation: isolate;
+  margin: 34px 0 0;
+  padding: 18px 18px 16px;
+  border: 1px solid rgba(94, 234, 212, .18);
+  border-radius: 22px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at var(--provenance-x, 16%) 0%, rgba(94, 234, 212, .13), transparent 32%),
+    linear-gradient(135deg, rgba(15, 23, 42, .52), rgba(2, 6, 23, .2));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 24px 90px rgba(2,6,23,.18);
+}
+.about-provenance::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid rgba(255,255,255,.08);
+  pointer-events: none;
+}
+.about-provenance::after {
+  content: "";
+  position: absolute;
+  inset: -40% -20%;
+  background:
+    linear-gradient(115deg, transparent 42%, rgba(255,255,255,.09) 50%, transparent 58%);
+  transform: translateX(-45%) rotate(2deg);
+  opacity: 0;
+  pointer-events: none;
+}
+.about-provenance.is-revealed::after {
+  animation: provenance-glint 1.8s .35s cubic-bezier(.16,1,.3,1) both;
+}
+.provenance-scan {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(94, 234, 212, .82), rgba(96, 165, 250, .46), transparent);
+  opacity: .75;
+  transform: translateY(14px) scaleX(.12);
+  transform-origin: left;
+}
+.about-provenance.is-revealed .provenance-scan {
+  animation: provenance-scan 2.8s .18s cubic-bezier(.16,1,.3,1) both;
+}
+.provenance-grid {
+  position: absolute;
+  inset: 0;
+  opacity: .18;
+  background-image:
+    linear-gradient(rgba(94, 234, 212, .14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(96, 165, 250, .12) 1px, transparent 1px);
+  background-size: 26px 26px;
+  mask-image: radial-gradient(circle at 70% 20%, #000, transparent 72%);
+  animation: provenance-grid-drift 13s linear infinite;
+  pointer-events: none;
+}
+.provenance-kicker {
+  position: relative;
+  margin: 0 0 8px;
+  color: rgba(94, 234, 212, .82) !important;
+  font-family: var(--font-mono);
+  font-size: .68rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+.provenance-body {
+  position: relative;
+  margin: 0;
+  color: color-mix(in oklab, var(--fg) 72%, transparent) !important;
+  font-size: .94rem;
+  line-height: 1.68;
+}
+.provenance-signature {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin: 14px 0 0;
+  color: color-mix(in oklab, var(--muted) 88%, transparent) !important;
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  letter-spacing: .04em;
+}
+.signature-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  color: #5eead4 !important;
+  border: 1px solid rgba(94, 234, 212, .28);
+  background: rgba(94, 234, 212, .08);
+  box-shadow: 0 0 20px rgba(94, 234, 212, .16);
+}
+.about-provenance.is-revealed .signature-mark {
+  animation: signature-pulse 2.7s .8s ease-in-out infinite;
+}
+/* About section: 默认文字半透明，仅信号词与强调内容更亮 */
 #about :where(p, li, a, span, em, code) {
-  color: color-mix(in oklab, var(--fg) 45%, transparent);
+  color: color-mix(in oklab, var(--fg) 58%, transparent);
 }
 #about strong, #about b {
   color: var(--fg);
@@ -963,6 +1146,10 @@ section[data-template="experience"] .xp-tags .pill:active {
   #spotlight { display: none !important; }
   section,
   .avatar-orb { transform: none !important; }
+  .about-copy::before,
+  .about-line::before,
+  .provenance-grid,
+  .provenance-scan { display: none !important; }
 }
 
 @keyframes avatar-breathe {
@@ -986,6 +1173,39 @@ section[data-template="experience"] .xp-tags .pill:active {
 @keyframes fluid-morph-c {
   0% { border-radius: 49% 51% 33% 67% / 61% 38% 62% 39%; }
   100% { border-radius: 66% 34% 58% 42% / 37% 59% 41% 63%; }
+}
+
+@keyframes about-axis-pulse {
+  0%, 100% { opacity: .28; transform: scaleY(.82); }
+  48% { opacity: .72; transform: scaleY(1); }
+}
+
+@keyframes provenance-scan {
+  0% { opacity: 0; transform: translateY(14px) scaleX(.08); }
+  18% { opacity: .9; }
+  62% { transform: translateY(102px) scaleX(1); }
+  100% { opacity: .42; transform: translateY(118px) scaleX(.28); }
+}
+
+@keyframes provenance-glint {
+  0% { opacity: 0; transform: translateX(-55%) rotate(2deg); }
+  24% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(62%) rotate(2deg); }
+}
+
+@keyframes provenance-grid-drift {
+  to { background-position: 26px 26px; }
+}
+
+@keyframes signature-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(94, 234, 212, .16);
+  }
+  48% {
+    transform: scale(1.08);
+    box-shadow: 0 0 34px rgba(94, 234, 212, .34);
+  }
 }
 
 @media (max-width: 640px) {
