@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="midnight">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Radiogenomic Analysis on Glioblastoma (Lesion Segmentation and Subtype Classification) | Jude Research Portfolio</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Radiogenomic Analysis on Glioblastoma (Lesion Segmentation and Subtype Classification) | Jude Research Portfolio</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Radiogenomic Analysis on Glioblastoma (Lesion Segmentation and Subtype Classification)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Introduction" />
+<meta property="og:description" content="Introduction" />
+<link rel="canonical" href="https://pinkr1ver.github.io/resume/projects/radiogenomics-gbm/" />
+<meta property="og:url" content="https://pinkr1ver.github.io/resume/projects/radiogenomics-gbm/" />
+<meta property="og:site_name" content="Jude Research Portfolio" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-06-25T05:19:19+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Radiogenomic Analysis on Glioblastoma (Lesion Segmentation and Subtype Classification)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-06-25T05:19:19+00:00","datePublished":"2026-06-25T05:19:19+00:00","description":"Introduction","headline":"Radiogenomic Analysis on Glioblastoma (Lesion Segmentation and Subtype Classification)","mainEntityOfPage":{"@type":"WebPage","@id":"https://pinkr1ver.github.io/resume/projects/radiogenomics-gbm/"},"url":"https://pinkr1ver.github.io/resume/projects/radiogenomics-gbm/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/resume/assets/css/main.css?v=1782364759" />
+  </head>
+  <body>
+    <div id="spotlight" aria-hidden="true"></div>
+    <div id="scroll-progress"></div>
+    <div class="container layout-two-col" data-layout="project">
+      <aside class="sidebar">
+        
+          <div class="sidebar-inner">
+            <p class="back-cta reveal"><a href="/resume/#projects" class="back-link">Back</a></p>
+            <div class="detail-card reveal">
+              <h3>Overview</h3>
+              <ul class="detail-meta">
+                <li class="reveal"><span class="k">Duration</span> 2021.09 - 2022.05</li>
+                <li class="reveal"><span class="k">Tags</span> Medical Imaging, Segmentation, Radiomics, GBM, U-Net</li>
+              </ul>
+            </div>
+            
+          </div>
+        
+      </aside>
+      <main class="content">
+        <article class="project">
+  <header class="reveal">
+    <h1 class="reveal">Radiogenomic Analysis on Glioblastoma (Lesion Segmentation and Subtype Classification)</h1>
+    <p class="project-meta reveal"><span>2021.09 - 2022.05</span><span> · Medical Imaging, Segmentation, Radiomics, GBM, U-Net</span></p>
+  </header>
+  <section class="project-content">
+    <div><h3 id="introduction">Introduction</h3>
+
+<p>In clinic, MRI is routine while molecular assays can be costly or delayed. I asked a simple question: can we anticipate GBM molecular subtypes from what radiologists already see? I built an end‑to‑end pipeline that first teaches a network to delineate the tumor, then turns those ROIs into quantitative radiomic signatures for a lightweight classifier. Along the way, I iterated on data organization, stabilized training on imbalanced modalities, and added analyses that explain which features matter and why.</p>
+
+<p>This project targets radiogenomics analysis for glioblastoma (GBM). The end-to-end pipeline includes:</p>
+
+<p>1) Lesion segmentation on MRI using U‑Net variants to obtain precise ROIs (lesion Regions of Interest)<br />
+2) Radiomics feature extraction on lesion ROIs (tumor regions) with feature engineering<br />
+3) GBM subtype classification (e.g., MLP) with evaluation and visualization</p>
+
+<h3 id="objectives">Objectives</h3>
+
+<ul>
+  <li>Anticipate GBM molecular subtypes from routine MRI by linking precise lesion segmentation with radiomics‑based signatures.</li>
+</ul>
+
+<h3 id="dataset">Dataset</h3>
+
+<ul>
+  <li>Source: Ivy GAP / TCGA‑GBM cohorts, with MRI series T1, T2, FLAIR, and stacked inputs (“Stack”).</li>
+  <li>Structure: images/masks organized per patient and series; CSV metadata for slice locations and labels.</li>
+  <li>ROIs: manual masks are used to supervise lesion segmentation and to define regions for radiomics extraction.</li>
+  <li>Radiomics config: a YAML configuration drives feature extraction (e.g., intensity/texture/shape features).</li>
+</ul>
+
+<h3 id="methods">Methods</h3>
+
+<ul>
+  <li>
+    <p>Typical workflow of radiogenomic studies</p>
+
+    <figure class="results-figure figure-academic">
+  <img src="/resume/assets/img/project/radiogenomics-gbm/workflow-radiogenomic.png" alt="Typical workflow of radiogenomic studies" />
+  <figcaption>
+    Typical workflow of radiogenomic studies<sup class="ref-sup"><a href="#ref-1">[1]</a></sup>.
+  </figcaption>
+</figure>
+
+    <p>1) Image acquisition<br />
+2) Image processing, including noise/artifact reduction, intensity and/or orientation standardization, coregistration of the multiparametric MRI scans<br />
+3) ROI definition using manual annotation or automatic segmentation<br />
+4) Feature extraction based on human-engineered (conventional radiomics) or deep-learning approaches<br />
+5) Data analysis, involving machine/deep-learning methods for feature selection, classification, and cross-validation</p>
+  </li>
+  <li>Segmentation (U‑Net family)<sup class="ref-sup"><a href="#ref-2">[2]</a></sup>
+    <ul>
+      <li>Supervised learning with lesion masks; architectures based on U‑Net variants adapted for GBM MRI.</li>
+      <li>Robust preprocessing and modality‑aware batching to handle sequence imbalance.</li>
+      <li>Outputs include training dynamics and qualitative visualizations for each sequence.</li>
+      <li>Architecture :</li>
+    </ul>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kn">import</span> <span class="n">torch</span>
+ <span class="kn">from</span> <span class="n">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+    
+ <span class="k">class</span> <span class="nc">ConvBlock</span><span class="p">(</span><span class="n">nn</span><span class="p">.</span><span class="n">Module</span><span class="p">):</span>
+     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">):</span>
+         <span class="nf">super</span><span class="p">().</span><span class="nf">__init__</span><span class="p">()</span>
+         <span class="n">self</span><span class="p">.</span><span class="n">net</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Sequential</span><span class="p">(</span>
+             <span class="n">nn</span><span class="p">.</span><span class="nc">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding_mode</span><span class="o">=</span><span class="sh">"</span><span class="s">reflect</span><span class="sh">"</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span>
+             <span class="n">nn</span><span class="p">.</span><span class="nc">BatchNorm2d</span><span class="p">(</span><span class="n">out_channels</span><span class="p">),</span>
+             <span class="n">nn</span><span class="p">.</span><span class="nc">Dropout2d</span><span class="p">(</span><span class="n">p</span><span class="p">),</span>
+             <span class="n">nn</span><span class="p">.</span><span class="nc">LeakyReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
+             <span class="n">nn</span><span class="p">.</span><span class="nc">Conv2d</span><span class="p">(</span><span class="n">out_channels</span><span class="p">,</span> <span class="n">out_channels</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding_mode</span><span class="o">=</span><span class="sh">"</span><span class="s">reflect</span><span class="sh">"</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span>
+             <span class="n">nn</span><span class="p">.</span><span class="nc">BatchNorm2d</span><span class="p">(</span><span class="n">out_channels</span><span class="p">),</span>
+             <span class="n">nn</span><span class="p">.</span><span class="nc">Dropout2d</span><span class="p">(</span><span class="n">p</span><span class="p">),</span>
+             <span class="n">nn</span><span class="p">.</span><span class="nc">LeakyReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
+         <span class="p">)</span>
+     <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">:</span>
+         <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="nf">net</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div>    </div>
+
+    <ul>
+      <li>Downsampling: strided 3×3 conv (stride=2).</li>
+      <li>Upsampling: nearest‑neighbor upsample ×2 + 1×1 conv to halve channels; concatenate with encoder skip features.</li>
+      <li>Depth: 64 → 128 → 256 → 512 → 1024 (encoder) with symmetric decoder.</li>
+      <li>Output: 1‑channel mask with sigmoid activation.</li>
+      <li>Key change: Dropout2d(p=0.3) in each ConvBlock improves generalization under limited data and reduces overfitting.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Down/Up sampling blocks and overall UNet:</p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">torch</span>
+<span class="kn">from</span> <span class="n">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+<span class="kn">from</span> <span class="n">torch.nn</span> <span class="kn">import</span> <span class="n">functional</span> <span class="k">as</span> <span class="n">F</span>
+    
+<span class="k">class</span> <span class="nc">downSample</span><span class="p">(</span><span class="n">nn</span><span class="p">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="nf">super</span><span class="p">().</span><span class="nf">__init__</span><span class="p">()</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">layer</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="p">.</span><span class="nc">Conv2d</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding_mode</span><span class="o">=</span><span class="sh">"</span><span class="s">reflect</span><span class="sh">"</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="bp">False</span><span class="p">),</span>
+            <span class="n">nn</span><span class="p">.</span><span class="nc">BatchNorm2d</span><span class="p">(</span><span class="n">channel</span><span class="p">),</span>
+            <span class="n">nn</span><span class="p">.</span><span class="nc">LeakyReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
+        <span class="p">)</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="nf">layer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    
+<span class="k">class</span> <span class="nc">upSample</span><span class="p">(</span><span class="n">nn</span><span class="p">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="nf">super</span><span class="p">().</span><span class="nf">__init__</span><span class="p">()</span>
+        <span class="c1"># reduce channels after upsample to match skip features
+</span>        <span class="n">self</span><span class="p">.</span><span class="n">layer</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Conv2d</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">channel</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">skip</span><span class="p">:</span> <span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="p">.</span><span class="nf">interpolate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">scale_factor</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="sh">"</span><span class="s">nearest</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">layer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">torch</span><span class="p">.</span><span class="nf">cat</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">skip</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    
+<span class="k">class</span> <span class="nc">UNet</span><span class="p">(</span><span class="n">nn</span><span class="p">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">in_channels</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">base</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">):</span>
+        <span class="nf">super</span><span class="p">().</span><span class="nf">__init__</span><span class="p">()</span>
+        <span class="c1"># Encoder
+</span>        <span class="n">self</span><span class="p">.</span><span class="n">c1</span> <span class="o">=</span> <span class="nc">ConvBlock</span><span class="p">(</span><span class="n">in_channels</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">d1</span> <span class="o">=</span> <span class="nf">downSample</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">c2</span> <span class="o">=</span> <span class="nc">ConvBlock</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">base</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">d2</span> <span class="o">=</span> <span class="nf">downSample</span><span class="p">(</span><span class="n">base</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">c3</span> <span class="o">=</span> <span class="nc">ConvBlock</span><span class="p">(</span><span class="n">base</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">base</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">d3</span> <span class="o">=</span> <span class="nf">downSample</span><span class="p">(</span><span class="n">base</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">c4</span> <span class="o">=</span> <span class="nc">ConvBlock</span><span class="p">(</span><span class="n">base</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="n">base</span> <span class="o">*</span> <span class="mi">8</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">d4</span> <span class="o">=</span> <span class="nf">downSample</span><span class="p">(</span><span class="n">base</span> <span class="o">*</span> <span class="mi">8</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">c5</span> <span class="o">=</span> <span class="nc">ConvBlock</span><span class="p">(</span><span class="n">base</span> <span class="o">*</span> <span class="mi">8</span><span class="p">,</span> <span class="n">base</span> <span class="o">*</span> <span class="mi">16</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+        <span class="c1"># Decoder
+</span>        <span class="n">self</span><span class="p">.</span><span class="n">u1</span> <span class="o">=</span> <span class="nf">upSample</span><span class="p">(</span><span class="n">base</span> <span class="o">*</span> <span class="mi">16</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">c6</span> <span class="o">=</span> <span class="nc">ConvBlock</span><span class="p">(</span><span class="n">base</span> <span class="o">*</span> <span class="mi">16</span><span class="p">,</span> <span class="n">base</span> <span class="o">*</span> <span class="mi">8</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">u2</span> <span class="o">=</span> <span class="nf">upSample</span><span class="p">(</span><span class="n">base</span> <span class="o">*</span> <span class="mi">8</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">c7</span> <span class="o">=</span> <span class="nc">ConvBlock</span><span class="p">(</span><span class="n">base</span> <span class="o">*</span> <span class="mi">8</span><span class="p">,</span> <span class="n">base</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">u3</span> <span class="o">=</span> <span class="nf">upSample</span><span class="p">(</span><span class="n">base</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">c8</span> <span class="o">=</span> <span class="nc">ConvBlock</span><span class="p">(</span><span class="n">base</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="n">base</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">u4</span> <span class="o">=</span> <span class="nf">upSample</span><span class="p">(</span><span class="n">base</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">c9</span> <span class="o">=</span> <span class="nc">ConvBlock</span><span class="p">(</span><span class="n">base</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+        <span class="c1"># Head
+</span>        <span class="n">self</span><span class="p">.</span><span class="n">head</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Conv2d</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">act</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Sigmoid</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="p">.</span><span class="n">Tensor</span><span class="p">:</span>
+        <span class="n">L1</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">c1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">L2</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">c2</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="nf">d1</span><span class="p">(</span><span class="n">L1</span><span class="p">))</span>
+        <span class="n">L3</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">c3</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="nf">d2</span><span class="p">(</span><span class="n">L2</span><span class="p">))</span>
+        <span class="n">L4</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">c4</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="nf">d3</span><span class="p">(</span><span class="n">L3</span><span class="p">))</span>
+        <span class="n">L5</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">c5</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="nf">d4</span><span class="p">(</span><span class="n">L4</span><span class="p">))</span>
+        <span class="n">R4</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">c6</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="nf">u1</span><span class="p">(</span><span class="n">L5</span><span class="p">,</span> <span class="n">L4</span><span class="p">))</span>
+        <span class="n">R3</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">c7</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="nf">u2</span><span class="p">(</span><span class="n">R4</span><span class="p">,</span> <span class="n">L3</span><span class="p">))</span>
+        <span class="n">R2</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">c8</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="nf">u3</span><span class="p">(</span><span class="n">R3</span><span class="p">,</span> <span class="n">L2</span><span class="p">))</span>
+        <span class="n">R1</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">c9</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="nf">u4</span><span class="p">(</span><span class="n">R2</span><span class="p">,</span> <span class="n">L1</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="nf">act</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="nf">head</span><span class="p">(</span><span class="n">R1</span><span class="p">))</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Radiomics Feature Extraction
+    <ul>
+      <li>Extract quantitative features from lesion ROIs using the PyRadiomics toolkit<sup class="ref-sup"><a href="#ref-3">[3]</a></sup>; feature families cover intensity, texture, and shape.</li>
+    </ul>
+  </li>
+  <li>Subtype Classification
+    <ul>
+      <li>Train a lightweight MLP on engineered radiomics features to predict GBM molecular subtypes.</li>
+      <li>A baseline following prior work (Wang 2017) reaches ~92% accuracy on subtype prediction.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="results">Results</h3>
+
+<figure class="results-figure figure-academic">
+  <img src="/resume/assets/img/project/radiogenomics-gbm/Segmentation.gif" alt="Segmentation animation (T1 example)" />
+  <figcaption>Segmentation animation: left = original MRI slice; middle = ground truth; right = model prediction.</figcaption>
+</figure>
+
+<h4 id="t1-sequence">T1 sequence</h4>
+
+<div class="results-grid">
+  <figure class="results-figure figure-academic">
+    <img src="/resume/assets/img/project/radiogenomics-gbm/segmentation-t1.png" alt="T1 segmentation examples — train / validation / test" />
+    <figcaption>T1 segmentation examples — train, validation, and test</figcaption>
+  </figure>
+  <div class="table-wrap">
+    <table class="results-table">
+      <caption>T1 segmentation metrics (best epoch 17)</caption>
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Train</th>
+          <th>Validation</th>
+          <th>Test</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Accuracy</td><td>0.989330</td><td>0.987710</td><td>0.980175</td></tr>
+        <tr><td>Balanced Accuracy</td><td>0.920806</td><td>0.926565</td><td>0.785334</td></tr>
+        <tr><td>Precision</td><td>0.777257</td><td>0.712830</td><td>0.721325</td></tr>
+        <tr><td>Sensitivity (Recall)</td><td>0.848366</td><td>0.862156</td><td>0.577671</td></tr>
+        <tr><td>Specificity</td><td>0.993246</td><td>0.990973</td><td>0.992996</td></tr>
+        <tr><td>F1‑score</td><td>0.811257</td><td>0.780414</td><td>0.642738</td></tr>
+        <tr><td>IoU</td><td>0.682449</td><td>0.639901</td><td>0.473555</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ul>
+  <li>Classification: an MLP on radiomic features achieves strong subtype discrimination (see repository for ROC/AUC details).</li>
+</ul>
+
+<h4 id="t2-sequence">T2 sequence</h4>
+
+<div class="results-grid">
+  <figure class="results-figure figure-academic">
+    <img src="/resume/assets/img/project/radiogenomics-gbm/segmentation-t2.png" alt="T2 segmentation examples — train / validation / test" />
+    <figcaption>T2 segmentation examples — train, validation, and test</figcaption>
+  </figure>
+  <div class="table-wrap">
+    <table class="results-table">
+      <caption>T2 segmentation metrics (best epoch 15)</caption>
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Train</th>
+          <th>Validation</th>
+          <th>Test</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Accuracy</td><td>0.989264</td><td>0.989870</td><td>0.984979</td></tr>
+        <tr><td>Balanced Accuracy</td><td>0.910587</td><td>0.909416</td><td>0.836919</td></tr>
+        <tr><td>Precision</td><td>0.789571</td><td>0.823274</td><td>0.803875</td></tr>
+        <tr><td>Sensitivity (Recall)</td><td>0.827365</td><td>0.824060</td><td>0.679117</td></tr>
+        <tr><td>Specificity</td><td>0.993809</td><td>0.994771</td><td>0.994722</td></tr>
+        <tr><td>F1‑score</td><td>0.808027</td><td>0.823667</td><td>0.736243</td></tr>
+        <tr><td>IoU</td><td>0.677890</td><td>0.700199</td><td>0.582589</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h4 id="flair-sequence">FLAIR sequence</h4>
+
+<div class="results-grid">
+  <figure class="results-figure figure-academic">
+    <img src="/resume/assets/img/project/radiogenomics-gbm/segmentation-flair.png" alt="FLAIR segmentation examples — train / validation / test" />
+    <figcaption>FLAIR segmentation examples — train, validation, and test</figcaption>
+  </figure>
+  <div class="table-wrap">
+    <table class="results-table">
+      <caption>FLAIR segmentation metrics (best epoch 16)</caption>
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Train</th>
+          <th>Validation</th>
+          <th>Test</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Accuracy</td><td>0.992049</td><td>0.992683</td><td>0.987521</td></tr>
+        <tr><td>Balanced Accuracy</td><td>0.927457</td><td>0.925201</td><td>0.852725</td></tr>
+        <tr><td>Precision</td><td>0.789571</td><td>0.823274</td><td>0.803875</td></tr>
+        <tr><td>Sensitivity (Recall)</td><td>0.859252</td><td>0.853861</td><td>0.709059</td></tr>
+        <tr><td>Specificity</td><td>0.996663</td><td>0.996541</td><td>0.996391</td></tr>
+        <tr><td>F1‑score</td><td>0.853110</td><td>0.862322</td><td>0.778177</td></tr>
+        <tr><td>IoU</td><td>0.741113</td><td>0.759359</td><td>0.636898</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h4 id="stack-sequence-multi-sequence-stacked-as-rgb-like-channels">Stack sequence (multi-sequence stacked as RGB-like channels)</h4>
+
+<div class="results-grid">
+  <figure class="results-figure figure-academic">
+    <img src="/resume/assets/img/project/radiogenomics-gbm/segmentation-stack.png" alt="Stack (T1/T2/FLAIR as 3 channels) — train / validation / test" />
+    <figcaption>Stack segmentation examples — T1/T2/FLAIR stacked as three channels</figcaption>
+  </figure>
+  <div class="table-wrap">
+    <table class="results-table">
+      <caption>Stack segmentation metrics (best epoch 16)</caption>
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Train</th>
+          <th>Validation</th>
+          <th>Test</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Accuracy</td><td>0.993412</td><td>0.993930</td><td>0.989395</td></tr>
+        <tr><td>Balanced Accuracy</td><td>0.946541</td><td>0.944896</td><td>0.797306</td></tr>
+        <tr><td>Precision</td><td>0.871109</td><td>0.881431</td><td>0.858787</td></tr>
+        <tr><td>Sensitivity (Recall)</td><td>0.896896</td><td>0.893092</td><td>0.785677</td></tr>
+        <tr><td>Specificity</td><td>0.996186</td><td>0.996700</td><td>0.995885</td></tr>
+        <tr><td>F1‑score</td><td>0.883814</td><td>0.887223</td><td>0.820607</td></tr>
+        <tr><td>IoU</td><td>0.791817</td><td>0.797306</td><td>0.695788</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<h4 id="across-sequence-comparison-test-set">Across-sequence comparison (test set)</h4>
+
+<div class="table-wrap">
+<table class="results-table">
+  <caption>Test-set metrics by sequence (best epoch per sequence)</caption>
+  <thead>
+    <tr>
+      <th>Metric</th>
+      <th>T1</th>
+      <th>T2</th>
+      <th>FLAIR</th>
+      <th>Stack</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Accuracy</td><td>0.980175</td><td>0.984979</td><td>0.987521</td><td>0.989395</td></tr>
+    <tr><td>Balanced Accuracy</td><td>0.785334</td><td>0.836919</td><td>0.852725</td><td>0.797306</td></tr>
+    <tr><td>Precision</td><td>0.721325</td><td>0.803875</td><td>0.803875</td><td>0.858787</td></tr>
+    <tr><td>Sensitivity (Recall)</td><td>0.577671</td><td>0.679117</td><td>0.709059</td><td>0.785677</td></tr>
+    <tr><td>Specificity</td><td>0.992996</td><td>0.994722</td><td>0.996391</td><td>0.995885</td></tr>
+    <tr><td>F1‑score</td><td>0.642738</td><td>0.736243</td><td>0.778177</td><td>0.820607</td></tr>
+    <tr><td>IoU</td><td>0.473555</td><td>0.582589</td><td>0.636898</td><td>0.695788</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3 id="contributions">Contributions</h3>
+
+<ul>
+  <li>We built and validated a GBM‑oriented, end‑to‑end radiogenomics pipeline: multi‑sequence lesion segmentation → ROI‑based radiomics extraction (PyRadiomics) → subtype classification.</li>
+</ul>
+
+<h3 id="discussion">Discussion</h3>
+
+<ul>
+  <li>Multi‑sequence fusion helps segmentation: stacking T1/T2/FLAIR as multi‑channel input improves boundaries and reduces false positives because each sequence contributes complementary contrast (T1 anatomical detail, T2 fluid/edema sensitivity, FLAIR CSF suppression highlighting peritumoral edema).</li>
+  <li>Limitation (subtype labeling): a patient may express mixed molecular signatures. Our current pipeline assumes single‑label subtype per patient and cannot produce multi‑label predictions. A practical path is to adopt multi‑label learning (sigmoid outputs with thresholding), uncertainty‑aware calibration, or mixture‑of‑subtypes modeling to reflect heterogeneity.</li>
+  <li>Concrete future directions:<br />
+1) 3D segmentation to derive volumetric (3D) radiomics features, potentially improving subtype discrimination over slice‑wise 2D features.<br />
+2) Move beyond hand‑crafted radiomics: explore end‑to‑end learning that maps images/ROIs directly to subtype, allowing the network to learn task‑specific representations.</li>
+</ul>
+
+<h3 id="appendix">Appendix</h3>
+
+<h4 id="references">References</h4>
+
+<ol class="refs">
+  <li id="ref-1">Fathi Kazerooni, Anahita, et al. “Imaging Signatures of Glioblastoma Molecular Characteristics: A Radiogenomics Review.” <em>Journal of Magnetic Resonance Imaging</em>, 52(1), 2020, 54–69. DOI: <a href="https://doi.org/10.1002/jmri.26907" target="_blank" rel="noopener">10.1002/jmri.26907</a>.</li>
+  <li id="ref-2">Ronneberger, O., Fischer, P., Brox, T. “U‑Net: Convolutional Networks for Biomedical Image Segmentation.” In: <em>MICCAI 2015</em>, LNCS 9351, pp. 234–241. DOI: <a href="https://doi.org/10.1007/978-3-319-24574-4_28" target="_blank" rel="noopener">10.1007/978-3-319-24574-4_28</a>.</li>
+  <li id="ref-3">van Griethuysen, J. J. M., et al. “Computational Radiomics System to Decode the Radiographic Phenotype.” <em>Cancer Research</em>, 77(21), 2017, e104–e107. DOI: <a href="https://doi.org/10.1158/0008-5472.CAN-17-0339" target="_blank" rel="noopener">10.1158/0008-5472.CAN-17-0339</a>. (PyRadiomics)</li>
+</ol>
+
+<h4 id="thesis">Thesis</h4>
+
+<ul>
+  <li><a href="https://github.com/PinkR1ver/Radiogenomics-GBM/blob/master/Doc/Final%20Thesis%20NUS.pdf">My Undergraduate Final Thesis (NUS, PDF)</a></li>
+</ul>
+
+<h4 id="repository">Repository</h4>
+
+<ul>
+  <li><a href="https://github.com/PinkR1ver/Radiogenomics-GBM">Radiogenomics‑GBM (GitHub)</a></li>
+</ul>
+
+</div>
+  </section>
+  </article>
+
+
+
+      </main>
+    </div>
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; 2026 Jude Research Portfolio</p>
+      </div>
+    </footer>
+    
+    <button id="back-to-top" aria-label="Back to top">↑</button>
+    <script src="/resume/assets/js/main.js?v=1782364759" defer></script>
+  </body>
+  </html>
+
+

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="midnight">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VNA‑Emulated IR‑UWB Radar: Transceiver Simulation and System Delay Calibration for ToF(Time-of-Flight) | Jude Research Portfolio</title><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>VNA‑Emulated IR‑UWB Radar: Transceiver Simulation and System Delay Calibration for ToF(Time-of-Flight) | Jude Research Portfolio</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="VNA‑Emulated IR‑UWB Radar: Transceiver Simulation and System Delay Calibration for ToF(Time-of-Flight)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Introduction" />
+<meta property="og:description" content="Introduction" />
+<link rel="canonical" href="https://pinkr1ver.github.io/resume/projects/uwb-vna-tof/" />
+<meta property="og:url" content="https://pinkr1ver.github.io/resume/projects/uwb-vna-tof/" />
+<meta property="og:site_name" content="Jude Research Portfolio" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-06-25T05:19:19+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="VNA‑Emulated IR‑UWB Radar: Transceiver Simulation and System Delay Calibration for ToF(Time-of-Flight)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2026-06-25T05:19:19+00:00","datePublished":"2026-06-25T05:19:19+00:00","description":"Introduction","headline":"VNA‑Emulated IR‑UWB Radar: Transceiver Simulation and System Delay Calibration for ToF(Time-of-Flight)","mainEntityOfPage":{"@type":"WebPage","@id":"https://pinkr1ver.github.io/resume/projects/uwb-vna-tof/"},"url":"https://pinkr1ver.github.io/resume/projects/uwb-vna-tof/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/resume/assets/css/main.css?v=1782364759" />
+  </head>
+  <body>
+    <div id="spotlight" aria-hidden="true"></div>
+    <div id="scroll-progress"></div>
+    <div class="container layout-two-col" data-layout="project">
+      <aside class="sidebar">
+        
+          <div class="sidebar-inner">
+            <p class="back-cta reveal"><a href="/resume/#projects" class="back-link">Back</a></p>
+            <div class="detail-card reveal">
+              <h3>Overview</h3>
+              <ul class="detail-meta">
+                <li class="reveal"><span class="k">Duration</span> 2023.12 - 2024.06</li>
+                <li class="reveal"><span class="k">Tags</span> RF, UWB, VNA, Signal Processing, TOF</li>
+              </ul>
+            </div>
+            
+          </div>
+        
+      </aside>
+      <main class="content">
+        <article class="project">
+  <header class="reveal">
+    <h1 class="reveal">VNA‑Emulated IR‑UWB Radar: Transceiver Simulation and System Delay Calibration for ToF(Time-of-Flight)</h1>
+    <p class="project-meta reveal"><span>2023.12 - 2024.06</span><span> · RF, UWB, VNA, Signal Processing, TOF</span></p>
+  </header>
+  <section class="project-content">
+    <div><h3 id="introduction">Introduction</h3>
+
+<p>This study started as a pragmatic workaround: our UWB device failed, and we wondered whether “signal superposition” with a VNA could emulate a UWB radar’s transmit‑receive chain. We therefore built a VNA‑emulated UWB radar system that synthesizes wideband excitation and measures echoes via S‑parameters. By converting the frequency‑domain response to the time domain and calibrating the end‑to‑end system delay (t_0), the emulated system supports time‑of‑flight (TOF)–based ranging comparable to a benchtop UWB setup.</p>
+
+<h3 id="objectives">Objectives</h3>
+
+<ul>
+  <li>Generate UWB‑like excitation/echo using VNA S‑parameters and reconstruct time‑domain signals.</li>
+  <li>Calibrate the system delay (t_0) to remove fixture/cable contributions.</li>
+  <li>Estimate TOF and perform range detection with quantified error.</li>
+</ul>
+
+<h3 id="setup-and-data">Setup and Data</h3>
+
+<ul>
+  <li>Instrument: VNA with S‑parameter sweep over a wide band; raw logs stored as <code class="language-plaintext highlighter-rouge">.s2p</code>.</li>
+  <li>Processing artifacts: preprocessed time‑domain signals, system delay candidates, and figures.</li>
+  <li>Notation: speed of light (c); sampling interval (\Delta t); calibrated delay (t_0).</li>
+</ul>
+
+<h3 id="methods">Methods</h3>
+
+<ul>
+  <li>Principle: VNA and linear superposition (our idea)
+    <ul>
+      <li>A VNA excites the device under test with a swept continuous wave (CW) and measures S‑parameters (e.g., (S_{21}(f))), which is equivalent to sampling the frequency response (H(f)) of a linear time‑invariant system.</li>
+      <li>The UWB transmit–echo chain is approximately linear under small‑signal conditions: if the system is driven by a multi‑tone wideband signal (x(t)=\sum_k A_k \cos(2\pi f_k t+\phi_k)), the output is (y(t)=\sum_k H(f_k) A_k \cos(2\pi f_k t+\phi_k)).</li>
+      <li>Therefore, we sweep over frequency points ({f_k}) with the VNA to acquire (H(f_k)), weight these samples by a desired UWB transmit spectrum (X(f_k)) to form (Y(f_k)=H(f_k)\,X(f_k)), and then apply an IFFT to obtain the time‑domain echo; this emulates “transmitting UWB and receiving UWB echoes.”</li>
+      <li>This frequency‑domain sampling plus linear superposition makes the VNA an “emulated UWB transceiver”: the transmitter is defined by (X(f)), the channel/target by (H(f)), and the receiver obtains (Y(f)) which is converted via IFFT into an impulse response/echo sequence.</li>
+    </ul>
+
+    <figure class="results-figure figure-academic">
+  <img src="/resume/assets/img/project/uwb-vna-tof/pipeline-freq-to-time.png" alt="Frequency-domain sampling and linear superposition with VNA; IFFT reconstructs time-domain echo for TOF" />
+  <figcaption>VNA‑based UWB emulation: sweep CW tones, measure S‑parameters, and reconstruct the time‑domain reflected response.</figcaption>
+</figure>
+  </li>
+  <li>Frequency → time conversion
+    <ul>
+      <li>Apply windowing (e.g., Hann), zero‑padding if needed, and inverse FFT on complex S‑parameters to obtain the impulse response.</li>
+      <li>Build the time axis from the sweep span and frequency resolution to enable TOF reading.</li>
+    </ul>
+  </li>
+  <li>System delay calibration ((t_0))
+    <ul>
+      <li>Treat (t_0) as a learnable scalar capturing cables/fixtures; search/optimize it to best align impulses across calibration targets, minimizing range offset on a held‑out set.</li>
+      <li>Selected (t_0) is then fixed for subsequent measurements.</li>
+    </ul>
+  </li>
+  <li>Range estimation (TOF)
+    <ul>
+      <li>Detect the first significant path in the calibrated impulse response; TOF (\hat{t} = t_\text{peak} - t_0).</li>
+      <li>Distance ( \hat{d} = \dfrac{c \cdot \hat{t}}{2} ) (monostatic). Medium corrections can be incorporated if necessary.</li>
+    </ul>
+  </li>
+  <li>Reference implementation (sketch)</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="k">def</span> <span class="nf">freq_to_time</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+    <span class="c1"># S: complex spectrum, f: frequencies (Hz), uniform grid
+</span>    <span class="n">Sw</span> <span class="o">=</span> <span class="n">S</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="nf">hanning</span><span class="p">(</span><span class="n">S</span><span class="p">.</span><span class="n">size</span><span class="p">)</span>  <span class="c1"># windowing
+</span>    <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">fft</span><span class="p">.</span><span class="nf">ifft</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">fft</span><span class="p">.</span><span class="nf">ifftshift</span><span class="p">(</span><span class="n">Sw</span><span class="p">))</span>  <span class="c1"># impulse response
+</span>    <span class="n">df</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">df</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">T</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">T</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">S</span><span class="p">.</span><span class="n">size</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">t</span><span class="p">,</span> <span class="n">h</span>
+
+<span class="k">def</span> <span class="nf">estimate_range</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">t0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">299792458.0</span><span class="p">):</span>
+    <span class="n">peak_idx</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">argmax</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">abs</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
+    <span class="n">tof</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">t</span><span class="p">[</span><span class="n">peak_idx</span><span class="p">]</span> <span class="o">-</span> <span class="n">t0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">c</span> <span class="o">*</span> <span class="n">tof</span>
+</code></pre></div></div>
+
+<h3 id="results">Results</h3>
+
+<div class="table-wrap">
+<table class="results-table">
+  <caption>Range detection on all signals (reported offset ~1.15%)</caption>
+  <thead>
+    <tr>
+      <th>Ground Truth (cm)</th>
+      <th>Predicted (cm)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>5.0</td><td>5.26</td></tr>
+    <tr><td>8.0</td><td>8.28</td></tr>
+    <tr><td>12.0</td><td>11.44</td></tr>
+    <tr><td>16.0</td><td>15.51</td></tr>
+    <tr><td>20.0</td><td>19.08</td></tr>
+    <tr><td>24.0</td><td>23.86</td></tr>
+    <tr><td>28.0</td><td>27.98</td></tr>
+    <tr><td>32.0</td><td>31.12</td></tr>
+    <tr><td>36.0</td><td>35.99</td></tr>
+    <tr><td>40.0</td><td>38.80</td></tr>
+    <tr><td>45.0</td><td>45.70</td></tr>
+    <tr><td>50.0</td><td>50.38</td></tr>
+    <tr><td>55.0</td><td>55.39</td></tr>
+    <tr><td>60.0</td><td>60.16</td></tr>
+    <tr><td>65.0</td><td>65.72</td></tr>
+    <tr><td>70.0</td><td>70.00</td></tr>
+    <tr><td>75.0</td><td>75.13</td></tr>
+    <tr><td>80.0</td><td>80.41</td></tr>
+    <tr><td>85.0</td><td>84.97</td></tr>
+    <tr><td>90.0</td><td>91.25</td></tr>
+    <tr><td>95.0</td><td>94.80</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>System delay (t_0): 1.52e‑09 s<br />
+Best offset (train/test/all): 1.84% / 0.95% / 1.62%<br />
+Note: system delay differs by setup and must be re‑calibrated when cables/fixtures change.</p>
+
+<h3 id="discussion">Discussion</h3>
+
+<ul>
+  <li>Calibrating (t_0) is crucial: uncompensated fixture/cable delays bias TOF linearly, dominating range error.</li>
+  <li>VNA‑based excitation offers controllable spectrum and convenient logging; with proper windowing and zero‑padding, the impulse response is sufficiently resolved for short‑range ranging.</li>
+  <li>Future work: robust peak picking under multipath, dielectric correction for non‑air media, and joint estimation of (t_0) and distance using probabilistic models.</li>
+</ul>
+
+<h3 id="appendix">Appendix</h3>
+
+<h4 id="repository">Repository</h4>
+
+<ul>
+  <li><a href="https://github.com/PinkR1ver/UWB_echo_signal_stimulation_by_VNA">UWB echo signal stimulation by VNA (GitHub)</a></li>
+</ul>
+
+</div>
+  </section>
+  </article>
+
+
+
+      </main>
+    </div>
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; 2026 Jude Research Portfolio</p>
+      </div>
+    </footer>
+    
+    <button id="back-to-top" aria-label="Back to top">↑</button>
+    <script src="/resume/assets/js/main.js?v=1782364759" defer></script>
+  </body>
+  </html>
+
+
