@@ -262,6 +262,9 @@ section { margin-bottom: 36px; }
 section {
   transform: translate3d(calc(var(--section-flow-x, 0px) * .3), 0, 0);
 }
+#education {
+  margin-top: 52px;
+}
 .timeline { list-style: none; padding: 0; margin: 0; }
 .timeline li { padding: 14px 0; border-bottom: 1px solid var(--border); }
 .timeline .timeline-head { display: flex; align-items: baseline; gap: 6px; }
@@ -325,34 +328,22 @@ section {
   display: inline-flex;
   align-items: center;
   float: right;
-  max-width: 34ch;
-  gap: 7px;
+  max-width: 38ch;
   margin: 2px 0 10px 18px;
   padding-top: 8px;
   border-top: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
-  color: color-mix(in oklab, var(--muted) 84%, transparent) !important;
+  color: color-mix(in oklab, var(--muted) 78%, transparent) !important;
   font-family: var(--font-mono);
-  font-size: .69rem;
+  font-size: .66rem;
   line-height: 1.55;
-  letter-spacing: .03em;
+  letter-spacing: .025em;
   text-align: right;
-  opacity: .72;
+  opacity: .66;
   transition: opacity .25s ease, border-color .25s ease;
 }
 .about-provenance:hover {
-  opacity: .96;
+  opacity: .9;
   border-color: color-mix(in oklab, var(--muted) 48%, transparent);
-}
-.signature-mark {
-  display: inline-grid;
-  place-items: center;
-  flex: 0 0 auto;
-  width: 18px;
-  height: 18px;
-  border-radius: 999px;
-  color: color-mix(in oklab, var(--muted) 76%, transparent) !important;
-  border: 1px solid color-mix(in oklab, var(--border) 75%, transparent);
-  font-size: .78rem;
 }
 .signature-text {
   color: inherit !important;
