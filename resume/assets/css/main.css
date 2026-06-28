@@ -543,6 +543,101 @@ article.project .project-content h4 {
   border-bottom: 1px solid var(--border);
   padding-bottom: 6px;
 }
+
+article.project .project-content .transcript-panel {
+  margin: 34px 0 20px;
+  padding: 18px;
+  border: 1px solid color-mix(in oklab, var(--border) 82%, transparent);
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--panel) 78%, transparent), color-mix(in oklab, var(--panel-2) 58%, transparent));
+  box-shadow: 0 22px 70px rgba(2, 6, 23, .28);
+}
+
+article.project .project-content .transcript-panel__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 14px;
+}
+
+article.project .project-content .transcript-panel .eyebrow {
+  margin: 0 0 5px;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--accent) 78%, var(--muted));
+}
+
+article.project .project-content .transcript-panel h3 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  letter-spacing: -.02em;
+  color: var(--fg);
+}
+
+article.project .project-content .transcript-panel h3::before {
+  content: none;
+}
+
+article.project .project-content .transcript-panel__link {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 7px 10px;
+  border: 1px solid color-mix(in oklab, var(--border) 80%, transparent);
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--bg) 58%, transparent);
+  color: color-mix(in oklab, var(--fg) 86%, transparent);
+  font-size: .78rem;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+article.project .project-content .transcript-panel__link:hover,
+article.project .project-content .transcript-panel__link:focus {
+  color: var(--fg);
+  border-color: color-mix(in oklab, var(--accent) 55%, var(--border));
+  text-decoration: none;
+}
+
+article.project .project-content .transcript-panel iframe {
+  display: block;
+  width: 100%;
+  height: min(72vh, 760px);
+  min-height: 520px;
+  border: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
+  border-radius: 16px;
+  background: color-mix(in oklab, var(--fg) 8%, #fff);
+}
+
+@media (max-width: 720px) {
+  article.project .project-content .transcript-panel {
+    padding: 12px;
+    border-radius: 18px;
+  }
+
+  article.project .project-content .transcript-panel__header {
+    display: block;
+  }
+
+  article.project .project-content .transcript-panel__link {
+    margin-top: 12px;
+  }
+
+  article.project .project-content .transcript-panel iframe {
+    height: 68vh;
+    min-height: 420px;
+  }
+}
+
 /* Ensure anchored headings are not hidden under sticky elements */
 article.project .project-content h2[id],
 article.project .project-content h3[id],
